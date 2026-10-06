@@ -26,7 +26,7 @@
 
     
       
-        <title>Individal Block Diagram - EGR 304 Data Sheet Template</title>
+        <title>Block Diagram - EGR 304 Data Sheet Template</title>
       
     
     
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Individal Block Diagram
+              Block Diagram
             
           </span>
         </div>
@@ -471,7 +471,7 @@
           
   
   <span class="md-ellipsis">
-    Individal Block Diagram
+    Block Diagram
   </span>
   
 
@@ -482,7 +482,7 @@
         
   
   <span class="md-ellipsis">
-    Individal Block Diagram
+    Block Diagram
   </span>
   
 
@@ -511,9 +511,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-block-diagram" class="md-nav__link">
+  <a href="#block-diagram" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Block Diagram
+      Block Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connector-j1-hub-j2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connector J1 → Hub J2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#major-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Major Components
     </span>
   </a>
   
@@ -809,9 +827,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-block-diagram" class="md-nav__link">
+  <a href="#block-diagram" class="md-nav__link">
     <span class="md-ellipsis">
-      Example Block Diagram
+      Block Diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connector-j1-hub-j2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connector J1 → Hub J2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#major-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Major Components
     </span>
   </a>
   
@@ -840,21 +876,133 @@
   
 
 
-  <h1>Individal Block Diagram</h1>
+  <h1>Block Diagram</h1>
 
 <h2 id="overview">Overview</h2>
-<p>This needs to be updated with a brief purpose for having the block diagram.
-Things to mention are:
-* power levels
-* sensor
-* Actuator
-* team connections
-* Power source
-* ...</p>
-<p>To get some initial formatting help, one can view <a href="https://embedded-systems-design.github.io/EGR304DataSheetTemplate/Appendix/basic-markdown-examples/">"here"</a> some basic techniques.</p>
-<h2 id="example-block-diagram">Example Block Diagram</h2>
-<p>Showing an example of how to import a screenshot of the block diagram created outside of git and brought into a page.</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../individual-block-diagram.png" data-desc-position="bottom"><img alt="Example of Indivial Block diagram " src="../individual-block-diagram.png"></a></p>
+<p><strong>Arya Padiyar — Team 102: Automatic Pill Dispenser</strong>
+<strong>Subsystem: Board B — Cap / Lid Sensing</strong></p>
+<p>This block diagram shows how my subsystem, Board B, is laid out and how it connects to the team's hub board</p>
+<ul>
+<li><strong>Power levels:</strong> A 9V unregulated wall adapter enters through a DC barrel jack. An L7805CV linear regulator steps it down to 5V, which powers the PIC18F57Q43 Curiosity Nano through VBUS. The Nano's on-board LDO supplies 3.3V to the sensor, comparator and all logic.</li>
+<li><strong>Sensor:</strong> A DRV5055 linear Hall-effect sensor detects a magnet in the bottle cap. Its analog output goes to the ADC on RA0, so I can read the raw field strength, and to an LM393 comparator. The comparator gives a clean open/closed digital signal on RB0.</li>
+<li><strong>Actuator / output:</strong> A red status LED on RC5 shows the lid state locally.</li>
+<li><strong>Team connections:</strong> Board B connects to the hub (J2) through 8-pin ribbon connector J1, following the class standard: pins 1–5 digital, 6–7 analog, 8 GND. I use pins 1, 2, 3 and 5, and pins 4, 6 and 7 are spare.</li>
+</ul>
+<h2 id="block-diagram">Block Diagram</h2>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../individual-block-diagram.png" data-desc-position="bottom"><img alt="Board B Block Diagram" src="../individual-block-diagram.png"></a></p>
+<h2 id="connector-j1-hub-j2">Connector J1 → Hub J2</h2>
+<table>
+<thead>
+<tr>
+<th>J1 Pin</th>
+<th>Signal</th>
+<th>Direction</th>
+<th>MCU Pin</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>DOSE_READY</td>
+<td>Hub → Board B</td>
+<td>RD0 (DI)</td>
+<td>Digital - Parallel (3.3V, 1 pin)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>LID_OPEN</td>
+<td>Board B → Hub</td>
+<td>RD1 (DO)</td>
+<td>Digital - Parallel (3.3V, 1 pin)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>LID_FAULT</td>
+<td>Board B → Hub</td>
+<td>RD2 (DO)</td>
+<td>Digital - Parallel (3.3V, 1 pin)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>—</td>
+<td>Spare (digital)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td>HEARTBEAT_B</td>
+<td>Board B → Hub</td>
+<td>RD4 (DO)</td>
+<td>Digital - Parallel (3.3V, 1 pin)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>—</td>
+<td>Spare (analog)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>—</td>
+<td>Spare (analog)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>8</td>
+<td>GND</td>
+<td>—</td>
+<td>GND</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="major-components">Major Components</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Manufacturer</th>
+<th>Part Number</th>
+<th>Supply</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microcontroller</td>
+<td>Microchip</td>
+<td>PIC18F57Q43 Curiosity Nano (DM164150)</td>
+<td>5V in / 3.3V logic</td>
+</tr>
+<tr>
+<td>Linear Hall-effect sensor</td>
+<td>Texas Instruments</td>
+<td>DRV5055A1QLPG</td>
+<td>3.3V</td>
+</tr>
+<tr>
+<td>Voltage comparator</td>
+<td>Texas Instruments</td>
+<td>LM393P</td>
+<td>3.3V</td>
+</tr>
+<tr>
+<td>5V linear regulator</td>
+<td>STMicroelectronics</td>
+<td>L7805CV</td>
+<td>9V in / 5V out</td>
+</tr>
+<tr>
+<td>DC barrel jack</td>
+<td>Same Sky</td>
+<td>PJ-102AH</td>
+<td>9V</td>
+</tr>
+</tbody>
+</table>
 
 
 
