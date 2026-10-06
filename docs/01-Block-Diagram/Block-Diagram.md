@@ -10,7 +10,7 @@ tags:
 **Arya Padiyar — Team 102: Automatic Pill Dispenser**
 **Subsystem: Board B — Cap / Lid Sensing**
 
-This block diagram shows how my subsystem, Board B, is laid out and how it connects to the team's hub board.
+This block diagram shows how my subsystem, Board B, is laid out and how it connects to the team's hub board
 
 - **Power levels:** A 9V unregulated wall adapter enters through a DC barrel jack. An L7805CV linear regulator steps it down to 5V, which powers the PIC18F57Q43 Curiosity Nano through VBUS. The Nano's on-board LDO supplies 3.3V to the sensor, comparator and all logic.
 - **Sensor:** A DRV5055 linear Hall-effect sensor detects a magnet in the bottle cap. Its analog output goes to the ADC on RA0, so I can read the raw field strength, and to an LM393 comparator. The comparator gives a clean open/closed digital signal on RB0.
