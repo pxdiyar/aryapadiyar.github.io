@@ -32,3 +32,9 @@ for<br>
 To review the details listed of the material used to construct the subsection, you can review it in the ["BOM"](https://embedded-systems-design.github.io/EGR304DataSheetTemplate/03-BOM/BOM/) section of the datasheet.
 
 For all the sections
+
+
+## Datasheet Pages
+
+- [Component Selection](02-Component-Selection/Component-Selection.md)
+- [Power Budget](05-Power-Budget/Power-Budget.md)
