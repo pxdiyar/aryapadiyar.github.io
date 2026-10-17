@@ -26,7 +26,7 @@
 
     
       
-        <title>Component Selection Example - EGR 304 Data Sheet Template</title>
+        <title>Component Selection - EGR 304 Data Sheet Template</title>
       
     
     
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#examples" class="md-skip">
+        <a href="#1-hall-effect-lid-sensor" class="md-skip">
           Skip to content
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Component Selection Example
+              Component Selection
             
           </span>
         </div>
@@ -517,7 +517,7 @@
           
   
   <span class="md-ellipsis">
-    Component Selection Example
+    Component Selection
   </span>
   
 
@@ -528,7 +528,7 @@
         
   
   <span class="md-ellipsis">
-    Component Selection Example
+    Component Selection
   </span>
   
 
@@ -548,35 +548,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#1-hall-effect-lid-sensor" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#style-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Style 1
+      1. Hall-Effect Lid Sensor
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#style-2" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2-comparator" class="md-nav__link">
     <span class="md-ellipsis">
-      Style 2
+      2. Comparator
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#3-5-v-voltage-regulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5 V Voltage Regulator
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-power-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Power Source
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pin-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin Table
+    </span>
+  </a>
   
 </li>
       
@@ -815,35 +827,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#1-hall-effect-lid-sensor" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#style-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Style 1
+      1. Hall-Effect Lid Sensor
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#style-2" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2-comparator" class="md-nav__link">
     <span class="md-ellipsis">
-      Style 2
+      2. Comparator
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#3-5-v-voltage-regulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 5 V Voltage Regulator
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-power-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Power Source
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pin-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin Table
+    </span>
+  </a>
   
 </li>
       
@@ -870,107 +894,320 @@
   
 
 
-  <h1>Component Selection Example</h1>
+  <h1>Component Selection</h1>
 
-<h2 id="examples">Examples</h2>
-<h3 id="style-1">Style 1</h3>
-<blockquote>
-<p>This is the example found in the assignment, uses more html</p>
-</blockquote>
-<p><em>Table 1: Example component selection</em></p>
-<p><strong>External Clock Module</strong></p>
+<p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing</strong></p>
+<p>Board B detects when the pill bottle cap is opened. A magnet in the cap is sensed by a linear Hall-effect sensor, a comparator turns the sensor output into a clean open/closed signal, and a linear regulator supplies the board from an external wall supply. The microcontroller (PIC18F57Q43 Curiosity Nano) was selected by the course and is not compared here.</p>
+<hr>
+<h2 id="1-hall-effect-lid-sensor">1. Hall-Effect Lid Sensor</h2>
+<p><strong>Subsystem: Board B – Cap / Lid Sensing</strong></p>
 <table>
 <thead>
 <tr>
-<th><strong>Solution</strong></th>
-<th><strong>Pros</strong></th>
-<th><strong>Cons</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../image1.png" data-desc-position="bottom"><img alt="" src="../image1.png"></a><br>Option 1.<br> XC1259TR-ND surface mount crystal<br>$1/each<br><a href="http://www.digikey.com/product-detail/en/ECS-40.3-S-5PX-TR/XC1259TR-ND/827366">link to product</a></td>
-<td>* Inexpensive[^1]<br>* Compatible with PSoC<br>* Meets surface mount constraint of project</td>
-<td>* Requires external components and support circuitry for interface<br>* Needs special PCB layout.</td>
-</tr>
-<tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../image3.png" data-desc-position="bottom"><img alt="" src="../image3.png"></a><br>* Option 2. <br>* CTX936TR-ND surface mount oscillator <br>* $1/each <br>* <a href="http://www.digikey.com/product-detail/en/636L3I001M84320/CTX936TR-ND/2292940">Link to product</a></td>
-<td>* Outputs a square wave <br>* Stable over operating temperature <br> * Direct interface with PSoC (no external circuitry required) range</td>
-<td>* More expensive <br>* Slow shipping speed</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Choice:</strong> Option 2: CTX936TR-ND surface mount oscillator</p>
-<p><strong>Rationale:</strong> A clock oscillator is easier to work with because it requires no external circuitry in order to interface with the PSoC. This is particularly important because we are not sure of the electrical characteristics of the PCB, which could affect the oscillation of a crystal. While the shipping speed is slow, according to the website if we order this week it will arrive within 3 weeks.</p>
-<h3 id="style-2">Style 2</h3>
-<blockquote>
-<p>Also acceptable, more markdown friendly</p>
-</blockquote>
-<p><strong>External Clock Module</strong></p>
-<ol>
-<li>
-<p>XC1259TR-ND surface mount crystal</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../image1.png" data-desc-position="bottom"><img alt="" src="../image1.png"></a></p>
-<ul>
-<li>$1/each</li>
-<li><a href="http://www.digikey.com/product-detail/en/ECS-40.3-S-5PX-TR/XC1259TR-ND/827366">link to product</a></li>
-</ul>
-<table>
-<thead>
-<tr>
+<th>Solution</th>
 <th>Pros</th>
 <th>Cons</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Inexpensive</td>
-<td>Requires external components and support circuitry for interface</td>
-</tr>
-<tr>
-<td>Compatible with PSoC</td>
-<td>Needs special PCB layout.</td>
-</tr>
-<tr>
-<td>Meets surface mount constraint of project</td>
-<td></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="drv5055.jpg" data-desc-position="bottom"><img src="drv5055.jpg" width="150"></a><br><strong>Option 1.</strong><br>TI DRV5055A1QLPG linear Hall-effect sensor (TO-92)<br>$0.77/each<br><a href="https://www.mouser.com/ProductDetail/595-DRV5055A1QLPG">DRV5055A1QLPG at Mouser</a></td>
+<td>* Analog output gives a continuous field-strength reading on the PIC ADC (RA0), which meets the project's analog signal chain requirement and lets the lid threshold be tuned in firmware<br><em> Runs from the 3.3 V rail (3.0 V to 3.63 V range), so its output (centered at 1.65 V) can never exceed the PIC's 3.3 V ADC input<br></em> TO-92 through-hole package is easy to hand-solder and to position next to the cap magnet<br>* Low unit cost and a complete TI datasheet</td>
+<td>* Output is ratiometric, so noise on the 3.3 V rail shows up directly in the reading and the supply needs local decoupling<br><em> Sensitivity drops to 60 mV/mT at 3.3 V (vs. 100 mV/mT at 5 V), giving less signal swing for the same magnet distance<br></em> Needs a comparator or a firmware threshold to turn the analog value into a clean open/closed signal</td>
 </tr>
 </tbody>
 </table>
-</li>
-<li>
-<p>CTX936TR-ND surface mount oscillator</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../image3.png" data-desc-position="bottom"><img alt="" src="../image3.png"></a></p>
-<ul>
-<li>$1/each</li>
-<li><a href="http://www.digikey.com/product-detail/en/636L3I001M84320/CTX936TR-ND/2292940">Link to product</a></li>
-</ul>
 <table>
 <thead>
 <tr>
+<th>Solution</th>
 <th>Pros</th>
 <th>Cons</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Outputs a square wave</td>
-<td>More expensive</td>
-</tr>
-<tr>
-<td>Stable over operating temperature</td>
-<td>Slow shipping speed</td>
-</tr>
-<tr>
-<td>Direct interface with PSoC (no external circuitry required) range</td>
-<td></td>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="a1324.jpg" data-desc-position="bottom"><img src="a1324.jpg" width="150"></a><br><strong>Option 2.</strong><br>Allegro A1324LUA-T linear Hall-effect sensor (TO-92)<br>$2.01/each<br><a href="https://www.mouser.com/ProductDetail/250-A1324LUA-T">A1324LUA-T at Mouser</a></td>
+<td>* Accurate ratiometric analog output (5 mV/G) with 17 kHz bandwidth, well suited to measuring cap position<br><em> Rated for -40 °C to 150 °C, far beyond anything a pill bottle will see<br></em> Same TO-92 through-hole package style as Option 1, so it is easy to solder</td>
+<td>* Requires a 4.5 V to 5.5 V supply, so it cannot run from the 3.3 V rail, and its output (up to about 5 V) would need a divider before the PIC's 3.3 V ADC pin<br><em> Higher supply current (6.9 mA typical, 9 mA max) than Option 1<br></em> Costs more than twice as much as Option 1, and Allegro lists the LUA-T as "contact factory for availability," which risks long lead times</td>
 </tr>
 </tbody>
 </table>
-</li>
-</ol>
-<p><strong>Choice:</strong> Option 2: CTX936TR-ND surface mount oscillator</p>
-<p><strong>Rationale:</strong> A clock oscillator is easier to work with because it requires no external circuitry in order to interface with the PSoC. This is particularly important because we are not sure of the electrical characteristics of the PCB, which could affect the oscillation of a crystal. While the shipping speed is slow, according to the website if we order this week it will arrive within 3 weeks.</p>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="reed-switch.jpg" data-desc-position="bottom"><img src="reed-switch.jpg" width="150"></a><br><strong>Option 3.</strong><br>Custom: Littelfuse MDSR-4-12-18 reed switch with pull-up resistor and RC low-pass debounce filter<br>$1.44/each<br><a href="https://www.mouser.com/ProductDetail/934-MDSR-412-18">MDSR-4-12-18 at Mouser</a></td>
+<td>* The switch itself draws no supply current; only the pull-up resistor draws current when the switch is closed<br><em> Simple digital open/closed output that can go straight to a PIC input after the RC debounce filter<br></em> Contacts are rated 0.5 A / 200 VDC, far above the 3.3 V logic signal they would switch</td>
+<td>* On/off output only, so it does not meet the project's analog signal chain requirement and cannot detect a partly opened cap or a weak or missing magnet (LID_FAULT)<br><em> Glass envelope is fragile and can crack if the leads are bent close to the body during assembly<br></em> Mechanical contacts bounce and wear, so extra debounce parts are needed and lifetime is limited by the number of switching cycles</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Choice:</strong> Option 1: TI DRV5055A1QLPG linear Hall-effect sensor</p>
+<p><strong>Rationale:</strong> The DRV5055 is the only option that runs directly from the 3.3 V rail and still gives an analog output. Because its output stays between 0 V and 3.3 V, it connects straight to the PIC's ADC with no level shifting. The A1324 needs a 5 V supply and a divider on its output, costs more than twice as much, and has uncertain availability. The reed switch gives only an on/off signal, so it does not meet the analog front-end requirement. The analog reading also lets firmware flag LID_FAULT when the field is outside the expected open/closed range, for example when the magnet is missing. The TO-92 package is easy to hand-solder.</p>
+<hr>
+<h2 id="2-comparator">2. Comparator</h2>
+<p><strong>Subsystem: Board B – Cap / Lid Sensing</strong></p>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="lm393.jpg" data-desc-position="bottom"><img src="lm393.jpg" width="150"></a><br><strong>Option 1.</strong><br>TI LM393P dual voltage comparator (PDIP-8)<br>$0.53/each<br><a href="https://www.mouser.com/ProductDetail/595-LM393P">LM393P at Mouser</a></td>
+<td>* Operates from 2 V to 30 V, so it runs from the same 3.3 V rail as the Hall sensor<br><em> Open-collector output is pulled up to 3.3 V, so the signal into the PIC (RB0) is always at a safe logic level<br></em> Dual comparator in a PDIP-8 through-hole package that is easy to hand-solder<br>* Low supply current (0.45 mA typical, 1 mA max at 5 V) and made by several manufacturers, so it is easy to source</td>
+<td>* Input common-mode range only reaches VCC - 1.5 V (about 1.8 V on a 3.3 V supply), so the switching threshold must sit below 1.8 V<br><em> Needs an external pull-up resistor on the output, plus feedback resistors to add hysteresis<br></em> Rated for 0 °C to 70 °C only, which is fine indoors but narrower than the other options</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="mcp6541.jpg" data-desc-position="bottom"><img src="mcp6541.jpg" width="150"></a><br><strong>Option 2.</strong><br>Microchip MCP6541-I/P push-pull comparator (PDIP-8)<br>$0.54/each<br><a href="https://www.mouser.com/ProductDetail/Microchip-Technology/MCP6541-I-P">MCP6541-I/P at Mouser</a></td>
+<td>* Rail-to-rail inputs and output, so the threshold can be anywhere in the sensor's 0 V to 3.3 V output range<br><em> Push-pull output drives the PIC input directly with no pull-up resistor<br></em> Very low quiescent current (about 600 nA typical)<br>* PDIP-8 through-hole package that is easy to hand-solder</td>
+<td>* Single comparator per package, so a second channel would need another IC<br><em> Supply is limited to 1.6 V to 5.5 V, which gives less flexibility than the LM393<br></em> Push-pull output cannot be pulled up to a different logic level or wired together with other outputs</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="mcp6002.jpg" data-desc-position="bottom"><img src="mcp6002.jpg" width="150"></a><br><strong>Option 3.</strong><br>Custom: Microchip MCP6002-I/P op-amp wired as a Schmitt-trigger comparator (PDIP-8)<br>$0.45/each<br><a href="https://www.mouser.com/ProductDetail/Microchip-Technology/MCP6002-I-P">MCP6002-I/P at Mouser</a></td>
+<td>* Threshold and hysteresis are set by resistors, so they can be tuned to the magnet distance in our cap<br><em> Rail-to-rail input and output and a 1.8 V to 6 V supply range, so it runs from the 3.3 V rail<br></em> Same Microchip MCP600x op-amp family used in our resistive sensor lab, so the team already knows the part</td>
+<td>* Op-amps are not designed to run in saturation; their slow recovery and 0.6 V/µs slew rate give slower, less clean edges than a true comparator<br><em> Needs more external resistors to design, place, and debug<br></em> No built-in hysteresis, so a wrong resistor value can make the output chatter when the cap is near the threshold</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Choice:</strong> Option 1: TI LM393P dual voltage comparator</p>
+<p><strong>Rationale:</strong> The LM393 meets every Board B requirement once the threshold is kept inside its input range. The DRV5055 outputs 1.65 V with no magnet, and its output drops when a north pole faces the sensor. With the cap magnet mounted north-pole-down, the output moves between about 1.65 V (cap open) and well below that (cap closed). A threshold of about 1 V therefore stays inside the LM393's 0 V to 1.8 V common-mode range. The open-collector output with a pull-up to 3.3 V guarantees a safe logic level on RB0. Several manufacturers make the LM393, which protects the build schedule from stock shortages. The MCP6541 is the backup if the common-mode limit causes problems during testing. The op-amp Schmitt trigger was rejected because it needs more parts and switches more slowly than a dedicated comparator.</p>
+<hr>
+<h2 id="3-5-v-voltage-regulator">3. 5 V Voltage Regulator</h2>
+<p><strong>Subsystem: Board B – Cap / Lid Sensing (power)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="l7805.jpg" data-desc-position="bottom"><img src="l7805.jpg" width="150"></a><br><strong>Option 1.</strong><br>STMicroelectronics L7805CV 5 V linear regulator (TO-220)<br>$0.60/each<br><a href="https://www.mouser.com/ProductDetail/511-L7805CV">L7805CV at Mouser</a></td>
+<td>* Fixed 5 V output rated up to 1.5 A, far more than Board B needs<br><em> Built-in current limiting and thermal shutdown protect the board from wiring mistakes during bring-up<br></em> TO-220 through-hole package is easy to solder; at 100 mA from 9 V it dissipates only 0.4 W, so it needs no heatsink<br>* Linear regulator as the course requires, stable with small input and output capacitors</td>
+<td>* About 2 V dropout means the input must stay above roughly 7 V, which rules out running long from a 9 V battery<br><em> Quiescent current of a few milliamps is wasted as heat<br></em> Only about 56 % efficient from a 9 V input (5 V / 9 V); the rest is lost as heat</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="lm2940.jpg" data-desc-position="bottom"><img src="lm2940.jpg" width="150"></a><br><strong>Option 2.</strong><br>TI LM2940CT-5.0/NOPB 5 V low-dropout regulator (TO-220)<br>$2.04/each<br><a href="https://www.mouser.com/ProductDetail/926-LM2940CT-5.0NOPB">LM2940CT-5.0 at Mouser</a></td>
+<td>* Low dropout (0.5 V typical at 1 A) lets it keep regulating from a lower input voltage<br><em> Reverse-polarity protection (-15 V typical) survives a supply plugged in backwards<br></em> Over 1 A output in a TO-220 through-hole package</td>
+<td>* Needs an output capacitor of at least 22 µF with ESR between 0.1 Ω and 1 Ω, or it can oscillate<br><em> High quiescent current (10 mA typical at a 5 mA load), which is more than the Hall sensor and comparator draw combined<br></em> More than three times the cost of Option 1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="mcp1702.jpg" data-desc-position="bottom"><img src="mcp1702.jpg" width="150"></a><br><strong>Option 3.</strong><br>Microchip MCP1702-5002E/TO 5 V low-dropout regulator (TO-92)<br>$0.65/each<br><a href="https://www.mouser.com/ProductDetail/Microchip-Technology/MCP1702-5002E-TO">MCP1702-5002E/TO at Mouser</a></td>
+<td>* Extremely low quiescent current (2 µA typical)<br><em> Low dropout (625 mV typical at 250 mA)<br></em> Stable with small 1 µF ceramic capacitors and takes up little board space</td>
+<td>* Rated for only 250 mA output, with little margin if more 5 V loads are added later<br><em> Maximum input voltage is 13.2 V, so there is little headroom for supply spikes or a higher-voltage adapter<br></em> TO-92 package cannot shed much heat: (9 V - 5 V) × 250 mA = 1 W, which is far too much for TO-92</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Choice:</strong> Option 1: STMicroelectronics L7805CV</p>
+<p><strong>Rationale:</strong> Board B runs from a 9 V wall supply, so the L7805's 2 V dropout and few-milliamp quiescent current don't matter. 9 V leaves 4 V of headroom, twice the dropout. At Board B's low current the TO-220 package runs cool with no heatsink. Built-in current limiting and thermal shutdown protect the board during bring-up. It is also the least expensive option and is widely stocked. The LM2940 costs more than three times as much, has strict output-capacitor ESR limits, and draws more quiescent current, and its low-dropout advantage isn't needed with a 9 V input. The MCP1702 is limited to 250 mA and cannot dissipate the heat of a 4 V drop at higher currents.</p>
+<hr>
+<h2 id="4-power-source">4. Power Source</h2>
+<p><strong>Subsystem: Board B – Cap / Lid Sensing (power)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="adafruit-9v.jpg" data-desc-position="bottom"><img src="adafruit-9v.jpg" width="150"></a><br><strong>Option 1.</strong><br>Adafruit 9 VDC 1000 mA regulated switching wall adapter<br>$8.95/each<br><a href="https://www.adafruit.com/product/63">9 V 1 A adapter at Adafruit</a></td>
+<td>* Regulated 9 V stays above the L7805's roughly 7 V minimum input while keeping regulator heat low<br><em> 5.5 mm / 2.1 mm center-positive plug mates with the PJ-102AH barrel jack on Board B<br></em> UL listed with a universal 100–240 VAC input<br>* Gives continuous power to a dispenser that sits on a counter all day</td>
+<td>* Tied to a wall outlet, so the board does not run during a power outage<br><em> The most expensive item on Board B<br></em> Adafruit gives a specification list rather than a full manufacturer datasheet</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="adafruit-12v.jpg" data-desc-position="bottom"><img src="adafruit-12v.jpg" width="150"></a><br><strong>Option 2.</strong><br>Adafruit 12 VDC 1000 mA regulated switching wall adapter<br>$8.95/each<br><a href="https://www.adafruit.com/product/798">12 V 1 A adapter at Adafruit</a></td>
+<td>* Same 5.5 mm / 2.1 mm center-positive plug, so it mates with the same barrel jack<br><em> More input headroom above the regulator's dropout<br></em> Regulated, UL listed, 1 A output</td>
+<td>* The L7805 must drop 7 V instead of 4 V, so it makes 75 % more heat for the same load current<br><em> Listed as out of stock at the time of writing, which risks the build schedule<br></em> Extra voltage brings no benefit, since nothing on Board B needs more than 5 V</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="9v-battery-clip.jpg" data-desc-position="bottom"><img src="9v-battery-clip.jpg" width="150"></a><br><strong>Option 3.</strong><br>9 V alkaline battery (Energizer 522) with Adafruit 9 V battery clip and 5.5 mm / 2.1 mm plug<br>$2.95/each (clip) + about $6.10/each (battery, Newark)<br><a href="https://www.adafruit.com/product/80">9 V clip at Adafruit</a>, <a href="https://data.energizer.com/pdfs/522.pdf">Energizer 522 datasheet</a></td>
+<td>* Portable, with no outlet needed<br><em> The clip's center-positive barrel plug fits the same PJ-102AH jack, so no board change is needed<br></em> The clip is inexpensive and covers the battery terminals to prevent shorts</td>
+<td>* Small capacity (about 600 mAh), and the voltage falls below the L7805's roughly 7 V minimum input long before the battery is empty, so battery life is short<br><em> Batteries must be bought again and again<br></em> A dispenser that quietly loses power could miss a dose reminder, which defeats the purpose of the product</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Choice:</strong> Option 1: Adafruit 9 VDC 1000 mA regulated wall adapter</p>
+<p><strong>Rationale:</strong> A pill dispenser stays in one place and must run reliably every day, so a wall adapter suits it better than a battery. A 9 V battery would drop below the L7805's minimum input early in its discharge. 9 V is the lowest standard adapter voltage that still clears the regulator's 2 V dropout with margin, so it keeps regulator heat lower than the 12 V adapter would. Its 1 A rating is far above what Board B draws. Its 5.5 mm / 2.1 mm plug mates with the PJ-102AH barrel jack already in the block diagram. It is regulated and UL listed, and it is in stock. The 12 V adapter is not.</p>
+<hr>
+<h2 id="pin-table">Pin Table</h2>
+<p><strong>Subsystem: Board B – Cap / Lid Sensing</strong> (PIC18F57Q43 Curiosity Nano)</p>
+<table>
+<thead>
+<tr>
+<th>MCU Pin</th>
+<th>Peripheral / Mode</th>
+<th>Direction</th>
+<th>Connected To</th>
+<th>Signal</th>
+<th>Ribbon J1 Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RA0</td>
+<td>ADC (analog input)</td>
+<td>Input</td>
+<td>DRV5055 OUT</td>
+<td>Hall sensor analog voltage</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RB0</td>
+<td>Digital input</td>
+<td>Input</td>
+<td>LM393 output (pull-up to 3.3 V)</td>
+<td>Lid open/closed (comparator)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RC5</td>
+<td>Digital output</td>
+<td>Output</td>
+<td>Status LED</td>
+<td>Local lid status</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RD0</td>
+<td>Digital input</td>
+<td>Input</td>
+<td>Hub J2</td>
+<td>DOSE_READY (Hub → Board B)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>RD1</td>
+<td>Digital output</td>
+<td>Output</td>
+<td>Hub J2</td>
+<td>LID_OPEN (Board B → Hub)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>RD2</td>
+<td>Digital output</td>
+<td>Output</td>
+<td>Hub J2</td>
+<td>LID_FAULT (Board B → Hub)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>RD4</td>
+<td>Digital output</td>
+<td>Output</td>
+<td>Hub J2</td>
+<td>HEARTBEAT_B (Board B → Hub)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>VBUS</td>
+<td>5 V power</td>
+<td>Input</td>
+<td>L7805CV output</td>
+<td>5 V rail</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VTG</td>
+<td>3.3 V power</td>
+<td>Output</td>
+<td>DRV5055 VCC, LM393 VCC</td>
+<td>3.3 V rail</td>
+<td>—</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>Ground</td>
+<td>—</td>
+<td>Board ground, Hub ground</td>
+<td>GND</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>J1 pins 4, 6, and 7 are spare.</p>
 
 
 
