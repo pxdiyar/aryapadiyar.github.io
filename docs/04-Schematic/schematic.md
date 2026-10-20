@@ -1,5 +1,5 @@
 ---
-title: Schematic
+title: Schematics
 ---
 
 **Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing**
@@ -76,6 +76,8 @@ Ribbon pin 6 is spare. Unused Nano pins are broken out to expansion headers J5 (
 - Jumpers JP1–JP3 for isolating sections during debugging
 - Power expansion header J3 (VIN, 5 V, 3.3 V, GND)
 - 0.1 µF bypass capacitor on every power pin
+- Unused op-amp (U2D) and comparator (U5B) inputs tied off through 10k pull-up/pull-down resistors
+- Every capacitor lists a working voltage (≥25% margin) and every resistor a power rating (1/8 W, ≥50% margin)
 
 Schematic checked in KiCad 10: 0 ERC errors, 0 warnings.
 
