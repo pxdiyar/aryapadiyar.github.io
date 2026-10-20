@@ -2,4 +2,4 @@ mkdocs-glightbox
 mkdocs-material
 mkdocs-material-extensions
 mkdocs-rss-plugin
-
+selectolax<1  # selectolax 1.x makes mkdocs-glightbox strip all page images
