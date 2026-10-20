@@ -649,9 +649,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resouces" class="md-nav__link">
+  <a href="#power" class="md-nav__link">
     <span class="md-ellipsis">
-      Resouces
+      Power
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amplified-analog-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amplified analog sensor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lid-comparator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lid comparator
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pin-table-pic18f57q43-curiosity-nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin table (PIC18F57Q43 Curiosity Nano)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug-and-test-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug and test features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
     </span>
   </a>
   
@@ -809,9 +854,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resouces" class="md-nav__link">
+  <a href="#power" class="md-nav__link">
     <span class="md-ellipsis">
-      Resouces
+      Power
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amplified-analog-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amplified analog sensor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lid-comparator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lid comparator
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pin-table-pic18f57q43-curiosity-nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin table (PIC18F57Q43 Curiosity Nano)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug-and-test-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug and test features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
     </span>
   </a>
   
@@ -842,12 +932,253 @@
 
   <h1>Schematic</h1>
 
+<p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing</strong></p>
 <h2 id="overview">Overview</h2>
-<p>This schematic is design to support .... (highlight functionally, power, and controller).</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../Screenshot.png" data-desc-position="bottom"><img alt="schematic" height:_300_="height:&quot;300;&quot;" src="../Screenshot.png" style="style" width:_350_="width:&quot;350&quot;"></a>
-<strong>Figure ##:</strong> Showing a example schematic.</p>
-<h2 id="resouces">Resouces</h2>
-<p>The schematic as a PDF download is available <a href="../ExampleSchematic.pdf"><em>here</em></a>, and the Zip folder of the project <a href="../dummyZip.zip"><em>here</em></a>.</p>
+<p>
+<strong>Figure 1:</strong> Board B (Cap / Lid Sensing) subsystem schematic.</p>
+<p>Board B detects when the pill bottle cap is opened. A magnet in the cap is sensed by a linear Hall-effect sensor. The signal is amplified, filtered and read by the PIC's ADC, and an LM393 comparator also gives a clean open/closed signal. The board reports to the hub over the team's 8-pin ribbon cable.</p>
+<hr>
+<h2 id="power">Power</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Part</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>Same Sky PJ-102AH barrel jack (J2)</td>
+<td>9 V wall adapter (Adafruit #63); accepts 9–12 V</td>
+</tr>
+<tr>
+<td>Fuse</td>
+<td>500 mA slow-blow, TR5 socket (F1)</td>
+<td>Removable</td>
+</tr>
+<tr>
+<td>Reverse protection</td>
+<td>1N5819 Schottky (D1)</td>
+<td></td>
+</tr>
+<tr>
+<td>Regulator</td>
+<td>STMicroelectronics L7805CV, TO-220 (U3)</td>
+<td>0.33 µF in, 0.1 µF + 10 µF out, per datasheet</td>
+</tr>
+<tr>
+<td>5 V → Nano</td>
+<td>Jumper JP1 to VBUS</td>
+<td>Remove JP1 when the Nano's USB cable is plugged in</td>
+</tr>
+<tr>
+<td>3.3 V rail</td>
+<td>Curiosity Nano VTG</td>
+<td>Powers all analog parts, so no signal can exceed the PIC's pin limits</td>
+</tr>
+</tbody>
+</table>
+<p>Load is under 100 mA, so the L7805 dissipates at most (12 − 5) × 0.1 = 0.7 W and needs no heatsink.</p>
+<h2 id="amplified-analog-sensor">Amplified analog sensor</h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Parts</th>
+<th>Design</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sensor</td>
+<td>TI DRV5055A1QLPG (U4), custom symbol <code>DRV5055A1_AP</code></td>
+<td>Ratiometric on 3.3 V: 1.65 V with no field, 60 mV/mT</td>
+</tr>
+<tr>
+<td>Reference</td>
+<td>R8/R9 10k divider, buffered by MCP6004 channel C</td>
+<td>VREF = 1.65 V, tracks the sensor's zero-field output</td>
+</tr>
+<tr>
+<td>Gain</td>
+<td>MCP6004 channel A, non-inverting about VREF</td>
+<td>G = 1 + R3/R2 = 1 + 5.1k/10k ≈ 1.5</td>
+</tr>
+<tr>
+<td>Low-pass filter</td>
+<td>R4 = 10 kΩ, C7 = 1 µF</td>
+<td>fc = 1 / (2π·R·C) ≈ 15.9 Hz</td>
+</tr>
+<tr>
+<td>Buffer</td>
+<td>MCP6004 channel B, unity gain</td>
+<td>Low-impedance drive into ADC pin RA0</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>JP2 (sensor), JP3 (ADC)</td>
+<td>Lets each stage be tested on its own</td>
+</tr>
+</tbody>
+</table>
+<p>The sensor can sit on the board (TO-92) or near the cap through header J4.</p>
+<h2 id="lid-comparator">Lid comparator</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Part</td>
+<td>TI LM393P (U5)</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>Raw sensor output vs. a 1.03 V threshold (R10 22k / R11 10k)</td>
+</tr>
+<tr>
+<td>Hysteresis</td>
+<td>R14 10k / R12 470k ≈ 69 mV</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Open collector, 10k pull-up to 3.3 V, to RB0</td>
+</tr>
+<tr>
+<td>Logic</td>
+<td>RB0 = 1 when the cap is open</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pin-table-pic18f57q43-curiosity-nano">Pin table (PIC18F57Q43 Curiosity Nano)</h2>
+<table>
+<thead>
+<tr>
+<th>MCU pin</th>
+<th>Mode</th>
+<th>Direction</th>
+<th>Connected to</th>
+<th>Signal</th>
+<th>Ribbon J1 pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RA0</td>
+<td>ADC</td>
+<td>In</td>
+<td>Buffered, filtered sensor</td>
+<td>ADC_IN</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RB0</td>
+<td>Digital</td>
+<td>In</td>
+<td>LM393 output</td>
+<td>CMP_OUT (cap open/closed)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RC5</td>
+<td>Digital</td>
+<td>Out</td>
+<td>Lid status LED (D4)</td>
+<td>LED_LID</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RF2</td>
+<td>Digital</td>
+<td>Out</td>
+<td>Heartbeat debug LED (D3)</td>
+<td>LED_DBG</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RD3</td>
+<td>Digital</td>
+<td>In</td>
+<td>Debug button SW1, 10k pull-up</td>
+<td>BTN_DBG</td>
+<td>—</td>
+</tr>
+<tr>
+<td>RD0</td>
+<td>Digital</td>
+<td>In</td>
+<td>Hub</td>
+<td>DOSE_READY</td>
+<td>1</td>
+</tr>
+<tr>
+<td>RD1</td>
+<td>Digital</td>
+<td>Out</td>
+<td>Hub</td>
+<td>LID_OPEN</td>
+<td>2</td>
+</tr>
+<tr>
+<td>RD2</td>
+<td>Digital</td>
+<td>Out</td>
+<td>Hub</td>
+<td>LID_FAULT</td>
+<td>3</td>
+</tr>
+<tr>
+<td>RC3</td>
+<td>UART1 RX</td>
+<td>In</td>
+<td>Hub</td>
+<td>UART_RX</td>
+<td>4</td>
+</tr>
+<tr>
+<td>RD4</td>
+<td>Digital</td>
+<td>Out</td>
+<td>Hub</td>
+<td>HEARTBEAT_B</td>
+<td>5</td>
+</tr>
+<tr>
+<td>RC2</td>
+<td>UART1 TX</td>
+<td>Out</td>
+<td>Hub</td>
+<td>UART_TX</td>
+<td>7</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>—</td>
+<td>—</td>
+<td>Hub</td>
+<td>GND</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>Ribbon pin 6 is spare. Unused Nano pins are broken out to expansion headers J5 (GPIO), J6 (analog) and J7 (I²C/SPI/UART3).</p>
+<h2 id="debug-and-test-features">Debug and test features</h2>
+<ul>
+<li>Heartbeat LED (D3) and lid status LED (D4), 330 Ω each: (3.3 − 2.0) / 330 ≈ 4 mA</li>
+<li>Push button SW1 with 10k pull-up and 0.1 µF debounce capacitor</li>
+<li>Test points TP1–TP9 on every power rail and every analog stage</li>
+<li>Jumpers JP1–JP3 for isolating sections during debugging</li>
+<li>Power expansion header J3 (VIN, 5 V, 3.3 V, GND)</li>
+<li>0.1 µF bypass capacitor on every power pin</li>
+</ul>
+<p>Schematic checked in KiCad 10: 0 ERC errors, 0 warnings.</p>
+<h2 id="resources">Resources</h2>
+<p>The schematic as a PDF download is available <a href="../BoardB_HallSensor_Schematic.pdf"><em>here</em></a>, and the Zip folder of the KiCad project (including custom symbol and footprint libraries) <a href="../AryaPadiyar_BoardB_Schematic_Project.zip"><em>here</em></a>.</p>
 
 
 

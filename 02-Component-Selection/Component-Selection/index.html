@@ -911,7 +911,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../drv5055.jpg" data-desc-position="bottom"><img alt="" src="../drv5055.jpg" width="150"></a><br><strong>Option 1.</strong><br>TI DRV5055A1QLPG linear Hall-effect sensor (TO-92)<br>$0.77/each<br><a href="https://www.mouser.com/ProductDetail/595-DRV5055A1QLPG">DRV5055A1QLPG at Mouser</a></td>
+<td><br><strong>Option 1.</strong><br>TI DRV5055A1QLPG linear Hall-effect sensor (TO-92)<br>$0.77/each<br><a href="https://www.mouser.com/ProductDetail/595-DRV5055A1QLPG">DRV5055A1QLPG at Mouser</a></td>
 <td>* Analog output gives a continuous field-strength reading on the PIC ADC (RA0), which meets the project's analog signal chain requirement and lets the lid threshold be tuned in firmware<br>* Runs from the 3.3 V rail (3.0 V to 3.63 V range), so its output (centered at 1.65 V) can never exceed the PIC's 3.3 V ADC input<br>* TO-92 through-hole package is easy to hand-solder and to position next to the cap magnet<br>* Low unit cost and a complete TI datasheet</td>
 <td>* Output is ratiometric, so noise on the 3.3 V rail shows up directly in the reading and the supply needs local decoupling<br>* Sensitivity drops to 60 mV/mT at 3.3 V (vs. 100 mV/mT at 5 V), giving less signal swing for the same magnet distance<br>* Needs a comparator or a firmware threshold to turn the analog value into a clean open/closed signal</td>
 </tr>
@@ -927,7 +927,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../a1324.jpg" data-desc-position="bottom"><img alt="" src="../a1324.jpg" width="150"></a><br><strong>Option 2.</strong><br>Allegro A1324LUA-T linear Hall-effect sensor (TO-92)<br>$2.01/each<br><a href="https://www.mouser.com/ProductDetail/250-A1324LUA-T">A1324LUA-T at Mouser</a></td>
+<td><br><strong>Option 2.</strong><br>Allegro A1324LUA-T linear Hall-effect sensor (TO-92)<br>$2.01/each<br><a href="https://www.mouser.com/ProductDetail/250-A1324LUA-T">A1324LUA-T at Mouser</a></td>
 <td>* Accurate ratiometric analog output (5 mV/G) with 17 kHz bandwidth, well suited to measuring cap position<br>* Rated for -40 °C to 150 °C, far beyond anything a pill bottle will see<br>* Same TO-92 through-hole package style as Option 1, so it is easy to solder</td>
 <td>* Requires a 4.5 V to 5.5 V supply, so it cannot run from the 3.3 V rail, and its output (up to about 5 V) would need a divider before the PIC's 3.3 V ADC pin<br>* Higher supply current (6.9 mA typical, 9 mA max) than Option 1<br>* Costs more than twice as much as Option 1, and Allegro lists the LUA-T as "contact factory for availability," which risks long lead times</td>
 </tr>
@@ -943,7 +943,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../reed-switch.jpg" data-desc-position="bottom"><img alt="" src="../reed-switch.jpg" width="150"></a><br><strong>Option 3.</strong><br>Custom: Littelfuse MDSR-4-12-18 reed switch with pull-up resistor and RC low-pass debounce filter<br>$1.44/each<br><a href="https://www.mouser.com/ProductDetail/934-MDSR-412-18">MDSR-4-12-18 at Mouser</a></td>
+<td><br><strong>Option 3.</strong><br>Custom: Littelfuse MDSR-4-12-18 reed switch with pull-up resistor and RC low-pass debounce filter<br>$1.44/each<br><a href="https://www.mouser.com/ProductDetail/934-MDSR-412-18">MDSR-4-12-18 at Mouser</a></td>
 <td>* The switch itself draws no supply current; only the pull-up resistor draws current when the switch is closed<br>* Simple digital open/closed output that can go straight to a PIC input after the RC debounce filter<br>* Contacts are rated 0.5 A / 200 VDC, far above the 3.3 V logic signal they would switch</td>
 <td>* On/off output only, so it does not meet the project's analog signal chain requirement and cannot detect a partly opened cap or a weak or missing magnet (LID_FAULT)<br>* Glass envelope is fragile and can crack if the leads are bent close to the body during assembly<br>* Mechanical contacts bounce and wear, so extra debounce parts are needed and lifetime is limited by the number of switching cycles</td>
 </tr>
@@ -964,7 +964,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../lm393.jpg" data-desc-position="bottom"><img alt="" src="../lm393.jpg" width="150"></a><br><strong>Option 1.</strong><br>TI LM393P dual voltage comparator (PDIP-8)<br>$0.53/each<br><a href="https://www.mouser.com/ProductDetail/595-LM393P">LM393P at Mouser</a></td>
+<td><br><strong>Option 1.</strong><br>TI LM393P dual voltage comparator (PDIP-8)<br>$0.53/each<br><a href="https://www.mouser.com/ProductDetail/595-LM393P">LM393P at Mouser</a></td>
 <td>* Operates from 2 V to 30 V, so it runs from the same 3.3 V rail as the Hall sensor<br>* Open-collector output is pulled up to 3.3 V, so the signal into the PIC (RB0) is always at a safe logic level<br>* Dual comparator in a PDIP-8 through-hole package that is easy to hand-solder<br>* Low supply current (0.45 mA typical, 1 mA max at 5 V) and made by several manufacturers, so it is easy to source</td>
 <td>* Input common-mode range only reaches VCC - 1.5 V (about 1.8 V on a 3.3 V supply), so the switching threshold must sit below 1.8 V<br>* Needs an external pull-up resistor on the output, plus feedback resistors to add hysteresis<br>* Rated for 0 °C to 70 °C only, which is fine indoors but narrower than the other options</td>
 </tr>
@@ -980,7 +980,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../mcp6541.jpg" data-desc-position="bottom"><img alt="" src="../mcp6541.jpg" width="150"></a><br><strong>Option 2.</strong><br>Microchip MCP6541-I/P push-pull comparator (PDIP-8)<br>$0.54/each<br><a href="https://www.mouser.com/ProductDetail/Microchip-Technology/MCP6541-I-P">MCP6541-I/P at Mouser</a></td>
+<td><br><strong>Option 2.</strong><br>Microchip MCP6541-I/P push-pull comparator (PDIP-8)<br>$0.54/each<br><a href="https://www.mouser.com/ProductDetail/Microchip-Technology/MCP6541-I-P">MCP6541-I/P at Mouser</a></td>
 <td>* Rail-to-rail inputs and output, so the threshold can be anywhere in the sensor's 0 V to 3.3 V output range<br>* Push-pull output drives the PIC input directly with no pull-up resistor<br>* Very low quiescent current (about 600 nA typical)<br>* PDIP-8 through-hole package that is easy to hand-solder</td>
 <td>* Single comparator per package, so a second channel would need another IC<br>* Supply is limited to 1.6 V to 5.5 V, which gives less flexibility than the LM393<br>* Push-pull output cannot be pulled up to a different logic level or wired together with other outputs</td>
 </tr>
@@ -996,7 +996,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../mcp6002.jpg" data-desc-position="bottom"><img alt="" src="../mcp6002.jpg" width="150"></a><br><strong>Option 3.</strong><br>Custom: Microchip MCP6002-I/P op-amp wired as a Schmitt-trigger comparator (PDIP-8)<br>$0.45/each<br><a href="https://www.mouser.com/ProductDetail/Microchip-Technology/MCP6002-I-P">MCP6002-I/P at Mouser</a></td>
+<td><br><strong>Option 3.</strong><br>Custom: Microchip MCP6002-I/P op-amp wired as a Schmitt-trigger comparator (PDIP-8)<br>$0.45/each<br><a href="https://www.mouser.com/ProductDetail/Microchip-Technology/MCP6002-I-P">MCP6002-I/P at Mouser</a></td>
 <td>* Threshold and hysteresis are set by resistors, so they can be tuned to the magnet distance in our cap<br>* Rail-to-rail input and output and a 1.8 V to 6 V supply range, so it runs from the 3.3 V rail<br>* Same Microchip MCP600x op-amp family used in our resistive sensor lab, so the team already knows the part</td>
 <td>* Op-amps are not designed to run in saturation; their slow recovery and 0.6 V/µs slew rate give slower, less clean edges than a true comparator<br>* Needs more external resistors to design, place, and debug<br>* No built-in hysteresis, so a wrong resistor value can make the output chatter when the cap is near the threshold</td>
 </tr>
@@ -1017,7 +1017,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../l7805.jpg" data-desc-position="bottom"><img alt="" src="../l7805.jpg" width="150"></a><br><strong>Option 1.</strong><br>STMicroelectronics L7805CV 5 V linear regulator (TO-220)<br>$0.60/each<br><a href="https://www.mouser.com/ProductDetail/511-L7805CV">L7805CV at Mouser</a></td>
+<td><br><strong>Option 1.</strong><br>STMicroelectronics L7805CV 5 V linear regulator (TO-220)<br>$0.60/each<br><a href="https://www.mouser.com/ProductDetail/511-L7805CV">L7805CV at Mouser</a></td>
 <td>* Fixed 5 V output rated up to 1.5 A, far more than Board B needs<br>* Built-in current limiting and thermal shutdown protect the board from wiring mistakes during bring-up<br>* TO-220 through-hole package is easy to solder; at 100 mA from 9 V it dissipates only 0.4 W, so it needs no heatsink<br>* Linear regulator as the course requires, stable with small input and output capacitors</td>
 <td>* About 2 V dropout means the input must stay above roughly 7 V, which rules out running long from a 9 V battery<br>* Quiescent current of a few milliamps is wasted as heat<br>* Only about 56 % efficient from a 9 V input (5 V / 9 V); the rest is lost as heat</td>
 </tr>
@@ -1033,7 +1033,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../lm2940.jpg" data-desc-position="bottom"><img alt="" src="../lm2940.jpg" width="150"></a><br><strong>Option 2.</strong><br>TI LM2940CT-5.0/NOPB 5 V low-dropout regulator (TO-220)<br>$2.04/each<br><a href="https://www.mouser.com/ProductDetail/926-LM2940CT-5.0NOPB">LM2940CT-5.0 at Mouser</a></td>
+<td><br><strong>Option 2.</strong><br>TI LM2940CT-5.0/NOPB 5 V low-dropout regulator (TO-220)<br>$2.04/each<br><a href="https://www.mouser.com/ProductDetail/926-LM2940CT-5.0NOPB">LM2940CT-5.0 at Mouser</a></td>
 <td>* Low dropout (0.5 V typical at 1 A) lets it keep regulating from a lower input voltage<br>* Reverse-polarity protection (-15 V typical) survives a supply plugged in backwards<br>* Over 1 A output in a TO-220 through-hole package</td>
 <td>* Needs an output capacitor of at least 22 µF with ESR between 0.1 Ω and 1 Ω, or it can oscillate<br>* High quiescent current (10 mA typical at a 5 mA load), which is more than the Hall sensor and comparator draw combined<br>* More than three times the cost of Option 1</td>
 </tr>
@@ -1049,7 +1049,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../mcp1702.jpg" data-desc-position="bottom"><img alt="" src="../mcp1702.jpg" width="150"></a><br><strong>Option 3.</strong><br>Microchip MCP1702-5002E/TO 5 V low-dropout regulator (TO-92)<br>$0.65/each<br><a href="https://www.mouser.com/ProductDetail/Microchip-Technology/MCP1702-5002E-TO">MCP1702-5002E/TO at Mouser</a></td>
+<td><br><strong>Option 3.</strong><br>Microchip MCP1702-5002E/TO 5 V low-dropout regulator (TO-92)<br>$0.65/each<br><a href="https://www.mouser.com/ProductDetail/Microchip-Technology/MCP1702-5002E-TO">MCP1702-5002E/TO at Mouser</a></td>
 <td>* Extremely low quiescent current (2 µA typical)<br>* Low dropout (625 mV typical at 250 mA)<br>* Stable with small 1 µF ceramic capacitors and takes up little board space</td>
 <td>* Rated for only 250 mA output, with little margin if more 5 V loads are added later<br>* Maximum input voltage is 13.2 V, so there is little headroom for supply spikes or a higher-voltage adapter<br>* TO-92 package cannot shed much heat: (9 V - 5 V) × 250 mA = 1 W, which is far too much for TO-92</td>
 </tr>
@@ -1070,7 +1070,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../adafruit-9v.jpg" data-desc-position="bottom"><img alt="" src="../adafruit-9v.jpg" width="150"></a><br><strong>Option 1.</strong><br>Adafruit 9 VDC 1000 mA regulated switching wall adapter<br>$8.95/each<br><a href="https://www.adafruit.com/product/63">9 V 1 A adapter at Adafruit</a></td>
+<td><br><strong>Option 1.</strong><br>Adafruit 9 VDC 1000 mA regulated switching wall adapter<br>$8.95/each<br><a href="https://www.adafruit.com/product/63">9 V 1 A adapter at Adafruit</a></td>
 <td>* Regulated 9 V stays above the L7805's roughly 7 V minimum input while keeping regulator heat low<br>* 5.5 mm / 2.1 mm center-positive plug mates with the PJ-102AH barrel jack on Board B<br>* UL listed with a universal 100–240 VAC input<br>* Gives continuous power to a dispenser that sits on a counter all day</td>
 <td>* Tied to a wall outlet, so the board does not run during a power outage<br>* The most expensive item on Board B<br>* Adafruit gives a specification list rather than a full manufacturer datasheet</td>
 </tr>
@@ -1086,7 +1086,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../adafruit-12v.jpg" data-desc-position="bottom"><img alt="" src="../adafruit-12v.jpg" width="150"></a><br><strong>Option 2.</strong><br>Adafruit 12 VDC 1000 mA regulated switching wall adapter<br>$8.95/each<br><a href="https://www.adafruit.com/product/798">12 V 1 A adapter at Adafruit</a></td>
+<td><br><strong>Option 2.</strong><br>Adafruit 12 VDC 1000 mA regulated switching wall adapter<br>$8.95/each<br><a href="https://www.adafruit.com/product/798">12 V 1 A adapter at Adafruit</a></td>
 <td>* Same 5.5 mm / 2.1 mm center-positive plug, so it mates with the same barrel jack<br>* More input headroom above the regulator's dropout<br>* Regulated, UL listed, 1 A output</td>
 <td>* The L7805 must drop 7 V instead of 4 V, so it makes 75 % more heat for the same load current<br>* Listed as out of stock at the time of writing, which risks the build schedule<br>* Extra voltage brings no benefit, since nothing on Board B needs more than 5 V</td>
 </tr>
@@ -1102,7 +1102,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../9v-battery-clip.jpg" data-desc-position="bottom"><img alt="" src="../9v-battery-clip.jpg" width="150"></a><br><strong>Option 3.</strong><br>9 V alkaline battery (Energizer 522) with Adafruit 9 V battery clip and 5.5 mm / 2.1 mm plug<br><span class="mathjax_ignore">$2.95/each (clip) + about $6.10/each (battery, Newark)</span><br><a href="https://www.adafruit.com/product/80">9 V clip at Adafruit</a>, <a href="https://data.energizer.com/pdfs/522.pdf">Energizer 522 datasheet</a></td>
+<td><br><strong>Option 3.</strong><br>9 V alkaline battery (Energizer 522) with Adafruit 9 V battery clip and 5.5 mm / 2.1 mm plug<br><span class="mathjax_ignore">$2.95/each (clip) + about $6.10/each (battery, Newark)</span><br><a href="https://www.adafruit.com/product/80">9 V clip at Adafruit</a>, <a href="https://data.energizer.com/pdfs/522.pdf">Energizer 522 datasheet</a></td>
 <td>* Portable, with no outlet needed<br>* The clip's center-positive barrel plug fits the same PJ-102AH jack, so no board change is needed<br>* The clip is inexpensive and covers the battery terminals to prevent shorts</td>
 <td>* Small capacity (about 600 mAh), and the voltage falls below the L7805's roughly 7 V minimum input long before the battery is empty, so battery life is short<br>* Batteries must be bought again and again<br>* A dispenser that quietly loses power could miss a dose reminder, which defeats the purpose of the product</td>
 </tr>
