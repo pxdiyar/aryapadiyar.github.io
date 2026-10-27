@@ -26,7 +26,7 @@
 
     
       
-        <title>Appendix - Main Page - EGR 304 Data Sheet Template</title>
+        <title>Appendix - EGR 304 Data Sheet Template</title>
       
     
     
@@ -89,6 +89,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#a-photoresistor-measurements-resistive-sensor-lab" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -120,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Appendix - Main Page
+              Appendix
             
           </span>
         </div>
@@ -807,6 +812,32 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#a-photoresistor-measurements-resistive-sensor-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Photoresistor measurements (Resistive Sensor Lab)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-revision-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Revision history
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -828,9 +859,71 @@
   
 
 
-  <h1>Appendix - Main Page</h1>
+  <h1>Appendix</h1>
 
-<p>The Appendix is where supporting information goes that is not in the main body.</p>
+<p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing</strong></p>
+<h2 id="a-photoresistor-measurements-resistive-sensor-lab">A. Photoresistor measurements (Resistive Sensor Lab)</h2>
+<p>These are the photoresistor readings from the Resistive Sensor Lab. Board B's divider resistor, comparator threshold and gain stage are all calculated from them.</p>
+<table>
+<thead>
+<tr>
+<th>Light condition</th>
+<th>Measured resistance</th>
+<th>Divider output with R19 = 3.9 kΩ on 3.3 V</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fully covered (cap closed)</td>
+<td>46.3 kΩ</td>
+<td>0.26 V</td>
+</tr>
+<tr>
+<td>Low indoor light</td>
+<td>11.07 kΩ</td>
+<td>0.86 V</td>
+</tr>
+<tr>
+<td>Fully lit room</td>
+<td>1.54 kΩ</td>
+<td>2.37 V</td>
+</tr>
+<tr>
+<td>Direct light / under a bulb</td>
+<td>66.5 Ω</td>
+<td>3.24 V</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Divider resistor:</strong> R = √(R_low × R_room) = √(11.07 kΩ × 1.54 kΩ) ≈ 4.1 kΩ → 3.9 kΩ standard value.</p>
+<p><strong>Comparator threshold:</strong> 3.3 V × 10 kΩ / (51 kΩ + 10 kΩ) ≈ 0.54 V, between the closed (0.26 V) and dimmest open (0.86 V) readings.</p>
+<h2 id="b-revision-history">B. Revision history</h2>
+<table>
+<thead>
+<tr>
+<th>Rev</th>
+<th>Date</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Oct 5, 2026</td>
+<td>First block diagram (Hall-effect sensor + magnet)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Oct 19, 2026</td>
+<td>Schematic matched to the team block diagram; UART added on J1 pins 4 and 7</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Oct 27, 2026</td>
+<td>Hall-effect sensor replaced by a photoresistor (teaching-team recommendation); gain, VREF and threshold resistors recalculated; power budget completed</td>
+</tr>
+</tbody>
+</table>
 
 
 
