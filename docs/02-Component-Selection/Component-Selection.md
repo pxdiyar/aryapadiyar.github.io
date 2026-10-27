@@ -4,29 +4,31 @@ title: Component Selection
 
 **Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing**
 
-Board B detects when the pill bottle cap is opened. A magnet in the cap is sensed by a linear Hall-effect sensor, a comparator turns the sensor output into a clean open/closed signal, and a linear regulator supplies the board from an external wall supply. The microcontroller (PIC18F57Q43 Curiosity Nano) was selected by the course and is not compared here.
+Board B detects when the pill bottle cap is opened. A photoresistor under the cap sits in the dark while the cap is closed; when the cap opens, light reaches it, its resistance drops and the divider voltage rises. An MCP6004 op-amp chain conditions that voltage for the PIC's ADC, an LM393 comparator turns it into a clean open/closed signal, and a linear regulator supplies the board from an external wall supply. The microcontroller (PIC18F57Q43 Curiosity Nano) was selected by the course and is not compared here.
+
+> **Rev 3 update (Oct 27):** the lid sensor changed from a DRV5055 Hall-effect sensor + cap magnet to a photoresistor. The teaching team (Zane Reynolds, after discussing it with Dr. Nichols) recommended the photoresistor because it meets the analog-sensor requirement, works the same way (analog value into the ADC and the comparator), and does not need a magnet in the cap. It is also the sensor we already built and characterized in the Resistive Sensor Lab. The Hall sensor is kept below as Option 3 to show why it was replaced.
 
 ---
 
-## 1. Hall-Effect Lid Sensor
+## 1. Lid Sensor (Light Sensor)
 
 **Subsystem: Board B – Cap / Lid Sensing**
 
 | Solution | Pros | Cons |
 |---|---|---|
-| ![](drv5055.jpg){ width="150" }<br>**Option 1.**<br>TI DRV5055A1QLPG linear Hall-effect sensor (TO-92)<br>$0.77/each<br>[DRV5055A1QLPG at Mouser](https://www.mouser.com/ProductDetail/595-DRV5055A1QLPG) | \* Analog output gives a continuous field-strength reading on the PIC ADC (RA0), which meets the project's analog signal chain requirement and lets the lid threshold be tuned in firmware<br>\* Runs from the 3.3 V rail (3.0 V to 3.63 V range), so its output (centered at 1.65 V) can never exceed the PIC's 3.3 V ADC input<br>\* TO-92 through-hole package is easy to hand-solder and to position next to the cap magnet<br>\* Low unit cost and a complete TI datasheet | \* Output is ratiometric, so noise on the 3.3 V rail shows up directly in the reading and the supply needs local decoupling<br>\* Sensitivity drops to 60 mV/mT at 3.3 V (vs. 100 mV/mT at 5 V), giving less signal swing for the same magnet distance<br>\* Needs a comparator or a firmware threshold to turn the analog value into a clean open/closed signal |
+| ![](pdv-p8001.jpg){ width="150" }<br>**Option 1.**<br>CdS photoresistor (LDR), 5 mm, e.g. Advanced Photonix PDV-P8001, in a divider with a 3.9 kΩ resistor<br>$1.42/each (lab kit part used for testing)<br>[PDV-P8001 at Mouser](https://www.mouser.com/ProductDetail/846-PDV-P8001) · [datasheet](https://faculty-web.msoe.edu/prust/EE2920/EE2920Resources/PDV-P8001.pdf) | \* Already characterized in our Resistive Sensor Lab: 46.3 kΩ covered, 11.07 kΩ low light, 1.54 kΩ room light, 66.5 Ω bright light<br>\* With R19 = 3.9 kΩ on 3.3 V the divider gives 0.26 V with the cap closed and 0.86–2.37 V with it open, a large, easy-to-detect step that never exceeds the PIC's 3.3 V ADC input<br>\* Gives an analog signal, so it meets the project's analog signal-chain requirement<br>\* No magnet or extra part in the cap; two leads, no polarity, fits the AP_R_LDR 5 mm footprint already in our library | \* Responds to room light, so it cannot tell open from closed in a dark room (handled in firmware by flagging LID_FAULT when the reading never changes)<br>\* Slow response (55 ms rise, 20 ms fall at 10 lux for the PDV-P8001), which is fine for a cap but slow for fast events<br>\* Large part-to-part spread (3–11 kΩ at 10 lux), so the threshold has to be set from measured values, not the datasheet alone |
 
 | Solution | Pros | Cons |
 |---|---|---|
-| ![](a1324.jpg){ width="150" }<br>**Option 2.**<br>Allegro A1324LUA-T linear Hall-effect sensor (TO-92)<br>$2.01/each<br>[A1324LUA-T at Mouser](https://www.mouser.com/ProductDetail/250-A1324LUA-T) | \* Accurate ratiometric analog output (5 mV/G) with 17 kHz bandwidth, well suited to measuring cap position<br>\* Rated for -40 °C to 150 °C, far beyond anything a pill bottle will see<br>\* Same TO-92 through-hole package style as Option 1, so it is easy to solder | \* Requires a 4.5 V to 5.5 V supply, so it cannot run from the 3.3 V rail, and its output (up to about 5 V) would need a divider before the PIC's 3.3 V ADC pin<br>\* Higher supply current (6.9 mA typical, 9 mA max) than Option 1<br>\* Costs more than twice as much as Option 1, and Allegro lists the LUA-T as "contact factory for availability," which risks long lead times |
+| ![](tept5700.jpg){ width="150" }<br>**Option 2.**<br>Vishay TEPT5700 ambient-light phototransistor (5 mm T-1¾) with a load resistor<br>$1.05/each<br>[TEPT5700 at Mouser](https://www.mouser.com/ProductDetail/782-TEPT5700) · [datasheet](https://wwwlegacy.vishay.com/docs/81321/tept5700.pdf) | \* Spectral response matched to the human eye (peak 570 nm), so it reacts to normal room light like the photoresistor<br>\* Much faster than a CdS cell and with very low dark current (3 nA typical)<br>\* Same 5 mm through-hole style, easy to mount under the cap | \* Output is a small current (5.2–24 µA at 20 lux), so it needs a large load resistor or a transimpedance stage before the ADC<br>\* Polarized part (collector/emitter), so it is easier to install backwards<br>\* Not something we have characterized yet, so the threshold and gain would have to be designed from scratch |
 
 | Solution | Pros | Cons |
 |---|---|---|
-| ![](reed-switch.jpg){ width="150" }<br>**Option 3.**<br>Custom: Littelfuse MDSR-4-12-18 reed switch with pull-up resistor and RC low-pass debounce filter<br>$1.44/each<br>[MDSR-4-12-18 at Mouser](https://www.mouser.com/ProductDetail/934-MDSR-412-18) | \* The switch itself draws no supply current; only the pull-up resistor draws current when the switch is closed<br>\* Simple digital open/closed output that can go straight to a PIC input after the RC debounce filter<br>\* Contacts are rated 0.5 A / 200 VDC, far above the 3.3 V logic signal they would switch | \* On/off output only, so it does not meet the project's analog signal chain requirement and cannot detect a partly opened cap or a weak or missing magnet (LID_FAULT)<br>\* Glass envelope is fragile and can crack if the leads are bent close to the body during assembly<br>\* Mechanical contacts bounce and wear, so extra debounce parts are needed and lifetime is limited by the number of switching cycles |
+| ![](drv5055.jpg){ width="150" }<br>**Option 3.**<br>TI DRV5055A1QLPG linear Hall-effect sensor + magnet in the cap (previous design, Rev 2)<br>$0.77/each<br>[DRV5055A1QLPG at Mouser](https://www.mouser.com/ProductDetail/595-DRV5055A1QLPG) | \* Not affected by room light, so it works in the dark<br>\* Ratiometric analog output that runs from 3.3 V<br>\* Can detect a missing magnet as a fault | \* Needs a magnet glued into every cap and the magnet's distance and orientation have to be controlled<br>\* Signal is small at 3.3 V (60 mV/mT), so the gain stage has to be tuned to the magnet<br>\* The teaching team recommended replacing it with the photoresistor for this project |
 
-**Choice:** Option 1: TI DRV5055A1QLPG linear Hall-effect sensor
+**Choice:** Option 1: CdS photoresistor (light-lab part) with a 3.9 kΩ divider resistor
 
-**Rationale:** The DRV5055 is the only option that runs directly from the 3.3 V rail and still gives an analog output. Because its output stays between 0 V and 3.3 V, it connects straight to the PIC's ADC with no level shifting. The A1324 needs a 5 V supply and a divider on its output, costs more than twice as much, and has uncertain availability. The reed switch gives only an on/off signal, so it does not meet the analog front-end requirement. The analog reading also lets firmware flag LID_FAULT when the field is outside the expected open/closed range, for example when the magnet is missing. The TO-92 package is easy to hand-solder.
+**Rationale:** The photoresistor gives the biggest, cleanest signal for the least hardware. We already measured it, so R19 was chosen from real data: the geometric mean of the low-light and room-light readings, √(11.07k × 1.54k) ≈ 4.1 kΩ, rounded to the standard 3.9 kΩ, which gives the widest voltage swing between those two conditions. With the cap closed the divider sits at 0.26 V, and any normal room light pushes it to 0.86 V or more, so a 0.54 V comparator threshold has margin on both sides. The phototransistor would need an extra current-to-voltage stage, and the Hall sensor needs a magnet in the cap, which is the main reason the teaching team recommended the switch. The one weakness, a dark room, is covered in firmware: if the cap is reported closed for a full dose window while DOSE_READY is active, Board B raises LID_FAULT so the hub can still alert the user.
 
 ---
 
@@ -36,11 +38,11 @@ Board B detects when the pill bottle cap is opened. A magnet in the cap is sense
 
 | Solution | Pros | Cons |
 |---|---|---|
-| ![](lm393.jpg){ width="150" }<br>**Option 1.**<br>TI LM393P dual voltage comparator (PDIP-8)<br>$0.53/each<br>[LM393P at Mouser](https://www.mouser.com/ProductDetail/595-LM393P) | \* Operates from 2 V to 30 V, so it runs from the same 3.3 V rail as the Hall sensor<br>\* Open-collector output is pulled up to 3.3 V, so the signal into the PIC (RB0) is always at a safe logic level<br>\* Dual comparator in a PDIP-8 through-hole package that is easy to hand-solder<br>\* Low supply current (0.45 mA typical, 1 mA max at 5 V) and made by several manufacturers, so it is easy to source | \* Input common-mode range only reaches VCC - 1.5 V (about 1.8 V on a 3.3 V supply), so the switching threshold must sit below 1.8 V<br>\* Needs an external pull-up resistor on the output, plus feedback resistors to add hysteresis<br>\* Rated for 0 °C to 70 °C only, which is fine indoors but narrower than the other options |
+| ![](lm393.jpg){ width="150" }<br>**Option 1.**<br>TI LM393P dual voltage comparator (PDIP-8)<br>$0.53/each<br>[LM393P at Mouser](https://www.mouser.com/ProductDetail/595-LM393P) | \* Operates from 2 V to 30 V, so it runs from the same 3.3 V rail as the sensor divider<br>\* Open-collector output is pulled up to 3.3 V, so the signal into the PIC (RB0) is always at a safe logic level<br>\* Dual comparator in a PDIP-8 through-hole package that is easy to hand-solder<br>\* Low supply current (0.45 mA typical, 1 mA max at 5 V) and made by several manufacturers, so it is easy to source | \* Input common-mode range only reaches VCC - 1.5 V (about 1.8 V on a 3.3 V supply), so the switching threshold must sit below 1.8 V<br>\* Needs an external pull-up resistor on the output, plus feedback resistors to add hysteresis<br>\* Rated for 0 °C to 70 °C only, which is fine indoors but narrower than the other options |
 
 | Solution | Pros | Cons |
 |---|---|---|
-| ![](mcp6541.jpg){ width="150" }<br>**Option 2.**<br>Microchip MCP6541-I/P push-pull comparator (PDIP-8)<br>$0.54/each<br>[MCP6541-I/P at Mouser](https://www.mouser.com/ProductDetail/Microchip-Technology/MCP6541-I-P) | \* Rail-to-rail inputs and output, so the threshold can be anywhere in the sensor's 0 V to 3.3 V output range<br>\* Push-pull output drives the PIC input directly with no pull-up resistor<br>\* Very low quiescent current (about 600 nA typical)<br>\* PDIP-8 through-hole package that is easy to hand-solder | \* Single comparator per package, so a second channel would need another IC<br>\* Supply is limited to 1.6 V to 5.5 V, which gives less flexibility than the LM393<br>\* Push-pull output cannot be pulled up to a different logic level or wired together with other outputs |
+| ![](mcp6541.jpg){ width="150" }<br>**Option 2.**<br>Microchip MCP6541-I/P push-pull comparator (PDIP-8)<br>$0.54/each<br>[MCP6541-I/P at Mouser](https://www.mouser.com/ProductDetail/Microchip-Technology/MCP6541-I-P) | \* Rail-to-rail inputs and output, so the threshold can be anywhere in the 0 V to 3.3 V range<br>\* Push-pull output drives the PIC input directly with no pull-up resistor<br>\* Very low quiescent current (about 600 nA typical)<br>\* PDIP-8 through-hole package that is easy to hand-solder | \* Single comparator per package, so a second channel would need another IC<br>\* Supply is limited to 1.6 V to 5.5 V, which gives less flexibility than the LM393<br>\* Push-pull output cannot be pulled up to a different logic level or wired together with other outputs |
 
 | Solution | Pros | Cons |
 |---|---|---|
@@ -48,7 +50,7 @@ Board B detects when the pill bottle cap is opened. A magnet in the cap is sense
 
 **Choice:** Option 1: TI LM393P dual voltage comparator
 
-**Rationale:** The LM393 meets every Board B requirement once the threshold is kept inside its input range. The DRV5055 outputs 1.65 V with no magnet, and its output drops when a north pole faces the sensor. With the cap magnet mounted north-pole-down, the output moves between about 1.65 V (cap open) and well below that (cap closed). A threshold of about 1 V therefore stays inside the LM393's 0 V to 1.8 V common-mode range. The open-collector output with a pull-up to 3.3 V guarantees a safe logic level on RB0. Several manufacturers make the LM393, which protects the build schedule from stock shortages. The MCP6541 is the backup if the common-mode limit causes problems during testing. The op-amp Schmitt trigger was rejected because it needs more parts and switches more slowly than a dedicated comparator.
+**Rationale:** The LM393 meets every Board B requirement once the threshold is kept inside its input range. On a 3.3 V supply its input common-mode range reaches about 1.8 V. The photoresistor divider sits at 0.26 V with the cap closed and 0.86–2.37 V with it open, so the threshold is set to 0.54 V (R10 = 51 kΩ, R11 = 10 kΩ), well inside that range and with margin on both sides. 10 kΩ / 470 kΩ positive feedback adds about 69 mV of hysteresis so the output does not chatter when the cap is half open. The open-collector output with a pull-up to 3.3 V guarantees a safe logic level on RB0. Several manufacturers make the LM393, which protects the build schedule from stock shortages. The MCP6541 is the backup if the common-mode limit causes problems during testing. The op-amp Schmitt trigger was rejected because it needs more parts and switches more slowly than a dedicated comparator.
 
 ---
 
@@ -62,7 +64,7 @@ Board B detects when the pill bottle cap is opened. A magnet in the cap is sense
 
 | Solution | Pros | Cons |
 |---|---|---|
-| ![](lm2940.jpg){ width="150" }<br>**Option 2.**<br>TI LM2940CT-5.0/NOPB 5 V low-dropout regulator (TO-220)<br>$2.04/each<br>[LM2940CT-5.0 at Mouser](https://www.mouser.com/ProductDetail/926-LM2940CT-5.0NOPB) | \* Low dropout (0.5 V typical at 1 A) lets it keep regulating from a lower input voltage<br>\* Reverse-polarity protection (-15 V typical) survives a supply plugged in backwards<br>\* Over 1 A output in a TO-220 through-hole package | \* Needs an output capacitor of at least 22 µF with ESR between 0.1 Ω and 1 Ω, or it can oscillate<br>\* High quiescent current (10 mA typical at a 5 mA load), which is more than the Hall sensor and comparator draw combined<br>\* More than three times the cost of Option 1 |
+| ![](lm2940.jpg){ width="150" }<br>**Option 2.**<br>TI LM2940CT-5.0/NOPB 5 V low-dropout regulator (TO-220)<br>$2.04/each<br>[LM2940CT-5.0 at Mouser](https://www.mouser.com/ProductDetail/926-LM2940CT-5.0NOPB) | \* Low dropout (0.5 V typical at 1 A) lets it keep regulating from a lower input voltage<br>\* Reverse-polarity protection (-15 V typical) survives a supply plugged in backwards<br>\* Over 1 A output in a TO-220 through-hole package | \* Needs an output capacitor of at least 22 µF with ESR between 0.1 Ω and 1 Ω, or it can oscillate<br>\* High quiescent current (10 mA typical at a 5 mA load), which is more than the sensor divider and comparator draw combined<br>\* More than three times the cost of Option 1 |
 
 | Solution | Pros | Cons |
 |---|---|---|
@@ -102,15 +104,44 @@ Board B detects when the pill bottle cap is opened. A magnet in the cap is sense
 
 | MCU Pin | Peripheral / Mode | Direction | Connected To | Signal | Ribbon J1 Pin |
 |---|---|---|---|---|---|
-| RA0 | ADC (analog input) | Input | DRV5055 OUT | Hall sensor analog voltage | — |
-| RB0 | Digital input | Input | LM393 output (pull-up to 3.3 V) | Lid open/closed (comparator) | — |
-| RC5 | Digital output | Output | Status LED | Local lid status | — |
+| RA0 | ADC (analog input) | Input | MCP6004 buffer output (U2B) | Conditioned light level (ADC_IN) | — |
+| RB0 | Digital input | Input | LM393 output (10k pull-up to 3.3 V) | Lid open/closed (CMP_OUT) | — |
+| RC5 | Digital output | Output | Lid status LED D4 (330 Ω) | LED_LID | — |
+| RF2 | Digital output | Output | Heartbeat LED D3 (330 Ω) | LED_DBG | — |
+| RD3 | Digital input | Input | Debug button SW1 (10k pull-up) | BTN_DBG | — |
 | RD0 | Digital input | Input | Hub J2 | DOSE_READY (Hub → Board B) | 1 |
 | RD1 | Digital output | Output | Hub J2 | LID_OPEN (Board B → Hub) | 2 |
 | RD2 | Digital output | Output | Hub J2 | LID_FAULT (Board B → Hub) | 3 |
+| RC3 | UART1 RX | Input | Hub J2 | UART_RX (Hub → Board B) | 4 |
 | RD4 | Digital output | Output | Hub J2 | HEARTBEAT_B (Board B → Hub) | 5 |
-| VBUS | 5 V power | Input | L7805CV output | 5 V rail | — |
-| VTG | 3.3 V power | Output | DRV5055 VCC, LM393 VCC | 3.3 V rail | — |
+| RC2 | UART1 TX | Output | Hub J2 | UART_TX (Board B → Hub) | 7 |
+| VBUS | 5 V power | Input (via JP1) | L7805CV output | 5 V rail | — |
+| VTG | 3.3 V power | Output | Photoresistor divider, MCP6004, LM393, LEDs, pull-ups | 3.3 V rail | — |
 | GND | Ground | — | Board ground, Hub ground | GND | 8 |
 
-J1 pins 4, 6, and 7 are spare.
+J1 pin 6 is spare.
+
+## MCC Configuration (PIC18F57Q43, planned)
+
+Planned MPLAB Code Configurator (MCC) setup for every microcontroller peripheral and pin Board B uses. MCC screenshots will replace this table once the firmware project is built.
+
+| MCC module | Setting | Pins | Purpose |
+|---|---|---|---|
+| Clock Control | HFINTOSC, 64 MHz | — | System clock |
+| ADCC | Single-ended, right-justified result, FRC clock, VDD reference | RA0 (ANA0) | Reads the conditioned light level |
+| Pin Manager: digital inputs | Input, digital, RD3 weak pull-up off (external 10k) | RB0, RD0, RD3 | Comparator output, DOSE_READY from the hub, debug button |
+| Pin Manager: digital outputs | Output, push-pull, start low | RC5, RF2, RD1, RD2, RD4 | Lid LED, heartbeat LED, LID_OPEN, LID_FAULT, HEARTBEAT_B |
+| UART1 | 9600 baud, 8-N-1, TX and RX enabled | RC2 (TX1), RC3 (RX1) | Serial link to the hub |
+| TMR0 | 1 ms periodic interrupt | — | Debounce, heartbeat timing, dose-window timeout |
+| Interrupt Manager | Global + peripheral interrupts on; TMR0 and UART1 RX | — | Event handling |
+
+## How the selected parts meet the product requirements
+
+| Product requirement | How Board B meets it |
+|---|---|
+| Detect when the cap is opened | Photoresistor divider steps from 0.26 V (closed) to 0.86 V or more (open); LM393 converts that into LID_OPEN on RB0 → RD1 → hub |
+| Analog signal chain into the ADC | Photoresistor → MCP6004 gain (G = 1.33 about VREF = 0.25 V) → 15.9 Hz low-pass filter → buffer → RA0 |
+| Flag a fault | Firmware compares the ADC reading with the comparator state and the dose window and drives LID_FAULT |
+| Safe logic levels | Every analog part runs from the Nano's 3.3 V rail, so no signal can exceed the PIC's pin limits |
+| Reliable, always-on power | 9 V wall adapter → fuse + reverse diode → L7805CV → 5 V VBUS; see the [Power Budget](../05-Power-Budget/Power-Budget.md) |
+| Team communication | Five digital lines plus UART on the 8-pin ribbon to the hub, matching the team pinout |
