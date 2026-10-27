@@ -89,6 +89,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -646,6 +651,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Power Budget
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -655,6 +671,83 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#33-v-rail-loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      +3.3 V rail loads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-v-rail-loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      +5 V rail loads
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#budget-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Budget pages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-power-budget-showed" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the power budget showed
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -742,6 +835,74 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#33-v-rail-loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      +3.3 V rail loads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-v-rail-loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      +5 V rail loads
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#budget-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Budget pages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-power-budget-showed" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the power budget showed
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -765,8 +926,155 @@
 
   <h1>Power Budget</h1>
 
-<p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing</strong></p>
-<p>The power budget will be completed using the course power budget template before the external design review.</p>
+<p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 3</strong></p>
+<h2 id="overview">Overview</h2>
+<p>Board B runs from a 9 V, 1 A wall adapter. The power path is 9 V adapter → 500 mA fuse + 1N5819 reverse-polarity diode → STMicroelectronics L7805CV → 5 V on the Curiosity Nano's VBUS (through jumper JP1) → the Nano's on-board MIC5353 LDO → 3.3 V for the PIC and every analog part. The budget below uses the course power budget template and the absolute maximum (worst-case) current of each part, with a 25 % safety margin on each rail.</p>
+<p>Downloads: <a href="../BoardB_Power_Budget.xlsx">power budget spreadsheet (.xlsx)</a> · <a href="../BoardB_Power_Budget.pdf">PDF</a></p>
+<h2 id="summary">Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Rail</th>
+<th>Source</th>
+<th>Max available</th>
+<th>Worst-case required (incl. 25 % margin)</th>
+<th>Remaining</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+3.3 V</td>
+<td>MIC5353 LDO on the Curiosity Nano</td>
+<td>500 mA</td>
+<td>454.8 mA</td>
+<td>45.2 mA</td>
+</tr>
+<tr>
+<td>+5 V</td>
+<td>L7805CV</td>
+<td>1500 mA</td>
+<td>628.8 mA</td>
+<td>871.3 mA</td>
+</tr>
+<tr>
+<td>+9 V input</td>
+<td>Adafruit #63 wall adapter</td>
+<td>1000 mA</td>
+<td>628.8 mA</td>
+<td>371.3 mA</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-v-rail-loads">+3.3 V rail loads</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Part number</th>
+<th>Qty</th>
+<th>Max current (mA)</th>
+<th>Total (mA)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Microcontroller (max current into VDD)</td>
+<td>PIC18F57Q43</td>
+<td>1</td>
+<td>350</td>
+<td>350</td>
+</tr>
+<tr>
+<td>Quad op-amp (gain, VREF buffer, ADC buffer)</td>
+<td>MCP6004-I/P</td>
+<td>1</td>
+<td>0.68</td>
+<td>0.68</td>
+</tr>
+<tr>
+<td>Dual comparator</td>
+<td>LM393P</td>
+<td>1</td>
+<td>2.5</td>
+<td>2.5</td>
+</tr>
+<tr>
+<td>Photoresistor divider, bright light</td>
+<td>CdS LDR + 3.9 kΩ</td>
+<td>1</td>
+<td>0.83</td>
+<td>0.83</td>
+</tr>
+<tr>
+<td>Heartbeat + lid status LEDs (330 Ω)</td>
+<td>D3, D4</td>
+<td>2</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Pull-ups and bias dividers</td>
+<td>R6, R8–R11, R13, R15–R17</td>
+<td>1</td>
+<td>1.8</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td><strong>Subtotal / with 25 % margin</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>363.8 / 454.8</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-v-rail-loads">+5 V rail loads</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Part number</th>
+<th>Qty</th>
+<th>Max current (mA)</th>
+<th>Total (mA)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Curiosity Nano through VBUS (limited by its 500 mA LDO)</td>
+<td>DM164150</td>
+<td>1</td>
+<td>500</td>
+<td>500</td>
+</tr>
+<tr>
+<td>Power-good LED + 1 kΩ</td>
+<td>D2, R1</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>Subtotal / with 25 % margin</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>503 / 628.8</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="budget-pages">Budget pages</h2>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../budget-1.png" data-desc-position="bottom"><img alt="Power budget page 1" src="../budget-1.png"></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../budget-2.png" data-desc-position="bottom"><img alt="Power budget page 2" src="../budget-2.png"></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../budget-3.png" data-desc-position="bottom"><img alt="Power budget page 3" src="../budget-3.png"></a></p>
+<h2 id="what-the-power-budget-showed">What the power budget showed</h2>
+<ul>
+<li><strong>Every rail has margin, even in the worst case.</strong> The tightest is the 3.3 V rail, where the PIC's 350 mA absolute maximum dominates. Even with that and a 25 % margin, the load stays under the Nano's 500 mA LDO. In normal operation the PIC draws a few milliamps, so the real margin is much larger.</li>
+<li><strong>The 9 V, 1 A adapter is more than enough.</strong> The worst-case draw is about 630 mA. The expected draw is roughly 15–30 mA (PIC, op-amp, comparator, two LEDs).</li>
+<li><strong>The L7805 needs no heatsink in normal use.</strong> At the expected load it dissipates about (9 − 5) × 0.03 ≈ 0.12 W. Only at the theoretical worst case (≈ 630 mA) would it reach ≈ 2.5 W and need a heatsink, which the TO-220 package allows if it is ever needed.</li>
+<li><strong>Changing to the photoresistor cut the sensor current.</strong> The LDR divider draws at most 0.83 mA (bright light) and about 0.07 mA with the cap closed.</li>
+<li><strong>Open question for the teaching team:</strong> Microchip documents VBUS only as an output, so feeding 5 V into it through JP1 should be confirmed before the board is built. JP1 must be removed whenever the Nano's USB cable is plugged in.</li>
+</ul>
 
 
 
