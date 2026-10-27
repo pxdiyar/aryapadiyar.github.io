@@ -1,6 +1,6 @@
-site_name: EGR 304 Data Sheet Template
-site_url: https://embedded-systems-design.github.io/EGR304DataSheetTemplate
-repo_url: https://github.com/embedded-systems-design/EGR304DataSheetTemplate
+site_name: Arya Padiyar — Board B Datasheet (Team 102)
+site_url: https://pxdiyar.github.io/aryapadiyar.github.io/
+repo_url: https://github.com/pxdiyar/aryapadiyar.github.io
 edit_uri: edit/main/docs/
 theme:
   name: material
@@ -59,11 +59,7 @@ extra_javascript:
 not_in_nav: |
   static
   
-copyright: "Copyright &copy; 2025 team-name-here"
+copyright: "Copyright &copy; 2026 Arya Padiyar, Team 102"
 
 extra:
   generator: false
-  social:
-    - icon: fontawesome/regular/file-code
-      link: /2025_fall
-      name: 2023 Site    
