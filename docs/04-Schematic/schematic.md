@@ -2,14 +2,16 @@
 title: Schematics
 ---
 
-**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing**
+**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 3**
 
 ## Overview
 
-![Board B subsystem schematic](BoardB_HallSensor_Schematic.png)
-**Figure 1:** Board B (Cap / Lid Sensing) subsystem schematic.
+![Board B subsystem schematic](BoardB_LidSensor_Schematic.png)
+**Figure 1:** Board B (Cap / Lid Sensing) subsystem schematic, Rev 3.
 
-Board B detects when the pill bottle cap is opened. A magnet in the cap is sensed by a linear Hall-effect sensor. The signal is amplified, filtered and read by the PIC's ADC, and an LM393 comparator also gives a clean open/closed signal. The board reports to the hub over the team's 8-pin ribbon cable.
+Board B detects when the pill bottle cap is opened. A photoresistor sits under the cap: with the cap closed it is dark, and when the cap opens light reaches it, its resistance drops and the divider voltage rises. The signal is amplified, filtered and read by the PIC's ADC, and an LM393 comparator also gives a clean open/closed signal. The board reports to the hub over the team's 8-pin ribbon cable.
+
+> **Rev 3 (Oct 27):** the DRV5055 Hall-effect sensor and cap magnet were replaced by a photoresistor (R18) and a 3.9 kΩ divider resistor (R19), as recommended by the teaching team. The gain, reference and comparator-threshold resistors were re-calculated for the new signal range. Everything else is unchanged from Rev 2.
 
 ---
 
@@ -30,21 +32,22 @@ Load is under 100 mA, so the L7805 dissipates at most (12 − 5) × 0.1 = 0.7 W 
 
 | Stage | Parts | Design |
 |---|---|---|
-| Sensor | TI DRV5055A1QLPG (U4), custom symbol `DRV5055A1_AP` | Ratiometric on 3.3 V: 1.65 V with no field, 60 mV/mT |
-| Reference | R8/R9 10k divider, buffered by MCP6004 channel C | VREF = 1.65 V, tracks the sensor's zero-field output |
-| Gain | MCP6004 channel A, non-inverting about VREF | G = 1 + R3/R2 = 1 + 5.1k/10k ≈ 1.5 |
+| Sensor | CdS photoresistor R18 (custom symbol `LDR_AP`, footprint `AP_R_LDR_5.0x4.1mm_P3mm`) + R19 = 3.9 kΩ to GND | V = 3.3 × R19 / (R18 + R19): 0.26 V cap closed (46.3 kΩ dark), 0.86 V low light (11.07 kΩ), 2.37 V room light (1.54 kΩ) |
+| R19 choice | Geometric mean of the lab readings | √(11.07k × 1.54k) ≈ 4.1 kΩ → 3.9 kΩ standard value, maximizes the swing between low and room light |
+| Reference | R8 = 120 kΩ / R9 = 10 kΩ divider, buffered by MCP6004 channel C | VREF = 3.3 × 10k / 130k ≈ 0.25 V, set to the cap-closed level |
+| Gain | MCP6004 channel A, non-inverting about VREF | G = 1 + R3/R2 = 1 + 3.3k/10k ≈ 1.33, so ADC sees ≈ 0.26 V closed, 1.06 V low light, 3.07 V room light |
 | Low-pass filter | R4 = 10 kΩ, C7 = 1 µF | fc = 1 / (2π·R·C) ≈ 15.9 Hz |
 | Buffer | MCP6004 channel B, unity gain | Low-impedance drive into ADC pin RA0 |
 | Isolation | JP2 (sensor), JP3 (ADC) | Lets each stage be tested on its own |
 
-The sensor can sit on the board (TO-92) or near the cap through header J4.
+The photoresistor can sit on the board or next to the cap through header J4 (pin 1 = 3.3 V, pin 2 = LDR_OUT); R19 stays on the board.
 
 ## Lid comparator
 
 | Item | Value |
 |---|---|
 | Part | TI LM393P (U5) |
-| Input | Raw sensor output vs. a 1.03 V threshold (R10 22k / R11 10k) |
+| Input | Raw divider output (LDR_OUT) vs. a 0.54 V threshold (R10 51k / R11 10k), inside the LM393's 0–1.8 V input range on 3.3 V |
 | Hysteresis | R14 10k / R12 470k ≈ 69 mV |
 | Output | Open collector, 10k pull-up to 3.3 V, to RB0 |
 | Logic | RB0 = 1 when the cap is open |
@@ -53,7 +56,7 @@ The sensor can sit on the board (TO-92) or near the cap through header J4.
 
 | MCU pin | Mode | Direction | Connected to | Signal | Ribbon J1 pin |
 |---|---|---|---|---|---|
-| RA0 | ADC | In | Buffered, filtered sensor | ADC_IN | — |
+| RA0 | ADC | In | Buffered, filtered light level | ADC_IN | — |
 | RB0 | Digital | In | LM393 output | CMP_OUT (cap open/closed) | — |
 | RC5 | Digital | Out | Lid status LED (D4) | LED_LID | — |
 | RF2 | Digital | Out | Heartbeat debug LED (D3) | LED_DBG | — |
@@ -70,7 +73,7 @@ Ribbon pin 6 is spare. Unused Nano pins are broken out to expansion headers J5 (
 
 ## Debug and test features
 
-- Heartbeat LED (D3) and lid status LED (D4), 330 Ω each: (3.3 − 2.0) / 330 ≈ 4 mA
+- Heartbeat LED (D3, yellow) and lid status LED (D4, red), 330 Ω each: (3.3 − 2.0) / 330 ≈ 4 mA
 - Push button SW1 with 10k pull-up and 0.1 µF debounce capacitor
 - Test points TP1–TP9 on every power rail and every analog stage
 - Jumpers JP1–JP3 for isolating sections during debugging
@@ -79,8 +82,19 @@ Ribbon pin 6 is spare. Unused Nano pins are broken out to expansion headers J5 (
 - Unused op-amp (U2D) and comparator (U5B) inputs tied off through 10k pull-up/pull-down resistors
 - Every capacitor lists a working voltage (≥25% margin) and every resistor a power rating (1/8 W, ≥50% margin)
 
-Schematic checked in KiCad 10: 0 ERC errors, 0 warnings.
+Rev 2 passed ERC in KiCad 10 with 0 errors and 0 warnings. Rev 3 only changes the sensor parts and resistor values; its netlist was compared with Rev 2 and the only differences are U4 → R18/R19 and the HALL_OUT → LDR_OUT net name.
+
+## How the schematic meets the product requirements
+
+| User need / requirement | Circuit that meets it |
+|---|---|
+| Know when the cap is opened | R18/R19 divider → LM393 comparator (with ≈ 69 mV hysteresis) → RB0 → LID_OPEN on ribbon pin 2 |
+| Analog signal chain into the ADC | R18/R19 → U2A gain about VREF → R4/C7 15.9 Hz low-pass → U2B buffer → RA0 |
+| Detect a problem (sensor unplugged, dark room, cap never opened during a dose) | Firmware compares the ADC level, comparator state and DOSE_READY and drives LID_FAULT on pin 3 |
+| Work with the rest of the dispenser | 8-pin ribbon J1: DOSE_READY in, LID_OPEN / LID_FAULT / HEARTBEAT_B out, UART1 both ways |
+| Safe, reliable power | 9 V adapter → 500 mA fuse → 1N5819 → L7805CV → 5 V VBUS (JP1); all analog on the Nano's 3.3 V rail |
+| Easy to test and debug | TP1–TP9 on every rail and analog stage, JP1–JP3 isolation jumpers, heartbeat LED, debug button, expansion headers J3, J5–J7 |
 
 ## Resources
 
-The schematic as a PDF download is available [*here*](BoardB_HallSensor_Schematic.pdf), and the Zip folder of the KiCad project (including custom symbol and footprint libraries) [*here*](AryaPadiyar_BoardB_Schematic_Project.zip).
+The schematic as a PDF download is available [*here*](BoardB_LidSensor_Schematic.pdf), and the Zip folder of the KiCad 10 project (including the custom `AP_Symbols` symbol library and `AP_Footprints` footprint library) [*here*](AryaPadiyar_BoardB_Schematic_Project.zip).
