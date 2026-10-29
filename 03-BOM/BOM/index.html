@@ -611,6 +611,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#order-quantities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Order quantities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-orders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware orders
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-and-expandability-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging and expandability hardware
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -809,6 +836,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#order-quantities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Order quantities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-orders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware orders
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-and-expandability-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging and expandability hardware
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -836,304 +890,510 @@
 
 <p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 3</strong></p>
 <h2 id="overview">Overview</h2>
-<p>This is the bill of materials for Board B, taken directly from the Rev 3 <a href="../../04-Schematic/schematic/">schematic</a>. Reference designators match the schematic. Unit costs are listed for the parts priced in <a href="../../02-Component-Selection/Component-Selection/">Component Selection</a>; passives, headers and test points come from Peralta lab stock.</p>
+<p>This is the bill of materials for Board B, generated from the Rev 3 <a href="../../04-Schematic/schematic/">schematic</a> (KiCad <em>Generate BOM</em>, grouped by value) and checked against the <a href="../../01-Block-Diagram/Block-Diagram/">block diagram</a> and <a href="../../02-Component-Selection/Component-Selection/">component selection</a>. Reference designators match the schematic. Every part on the board is listed, including the ones I'm taking from Peralta 109 stock or the course kit.</p>
+<p>The table is sorted by where each part comes from. Only four parts have to be bought; everything else (passives, LEDs, headers, jumpers, test points, IC sockets, the barrel jack, fuse and 1N5819) is in Peralta 109 general stock, and the Curiosity Nano is from the course kit.</p>
 <h2 id="bill-of-materials">Bill of Materials</h2>
-<p><em>Table 1: Board B bill of materials (Rev 3).</em></p>
+<p><em>Table 1: Board B bill of materials (Rev 3). Prices are Mouser / Adafruit single-quantity prices checked on October 29, 2026.</em></p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;"><strong>Part / Description</strong></th>
-<th style="text-align: left;"><strong>Qty</strong></th>
+<th style="text-align: left;"><strong>Qty on Board</strong></th>
+<th style="text-align: left;"><strong>Qty to Order</strong></th>
 <th style="text-align: left;"><strong>Unit Cost</strong></th>
+<th style="text-align: left;"><strong>Total Cost</strong></th>
 <th style="text-align: left;"><strong>Manufacturer</strong></th>
 <th style="text-align: left;"><strong>Manufacturer #</strong></th>
-<th style="text-align: left;"><strong>Vendor / Datasheet</strong></th>
+<th style="text-align: left;"><strong>Source / Vendor Link</strong></th>
+<th style="text-align: left;"><strong>Datasheet</strong></th>
 <th style="text-align: left;"><strong>Schematic Reference Designators</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">Microcontroller board, PIC18F57Q43 Curiosity Nano</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">Course kit</td>
-<td style="text-align: left;">Microchip</td>
-<td style="text-align: left;">DM164150</td>
-<td style="text-align: left;"><a href="https://www.microchip.com/en-us/development-tool/DM164150">Microchip</a></td>
-<td style="text-align: left;">U1</td>
-</tr>
-<tr>
-<td style="text-align: left;">Quad op-amp, rail-to-rail, DIP-14</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
-<td style="text-align: left;">Microchip</td>
-<td style="text-align: left;">MCP6004-I/P</td>
-<td style="text-align: left;"><a href="https://www.mouser.com/c/?q=MCP6004-I%2FP">Mouser</a></td>
-<td style="text-align: left;">U2</td>
-</tr>
-<tr>
 <td style="text-align: left;">5 V linear regulator, 1.5 A, TO-220</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">$0.60</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">$1.08</td>
+<td style="text-align: left;">$3.24</td>
 <td style="text-align: left;">STMicroelectronics</td>
 <td style="text-align: left;">L7805CV</td>
 <td style="text-align: left;"><a href="https://www.mouser.com/ProductDetail/511-L7805CV">Mouser</a></td>
+<td style="text-align: left;"><a href="https://www.st.com/resource/en/datasheet/l78.pdf">PDF</a></td>
 <td style="text-align: left;">U3</td>
 </tr>
 <tr>
 <td style="text-align: left;">Dual voltage comparator, DIP-8</td>
 <td style="text-align: left;">1</td>
+<td style="text-align: left;">4</td>
 <td style="text-align: left;">$0.53</td>
+<td style="text-align: left;">$2.12</td>
 <td style="text-align: left;">Texas Instruments</td>
 <td style="text-align: left;">LM393P</td>
 <td style="text-align: left;"><a href="https://www.mouser.com/ProductDetail/595-LM393P">Mouser</a></td>
+<td style="text-align: left;"><a href="https://www.ti.com/lit/ds/symlink/lm393.pdf">PDF</a></td>
 <td style="text-align: left;">U5</td>
 </tr>
 <tr>
-<td style="text-align: left;">CdS photoresistor, 5 mm (light-lab part)</td>
+<td style="text-align: left;">CdS photoresistor, 5 mm ceramic (light-lab part)</td>
 <td style="text-align: left;">1</td>
+<td style="text-align: left;">4</td>
 <td style="text-align: left;">$1.42</td>
-<td style="text-align: left;">Advanced Photonix (equivalent)</td>
+<td style="text-align: left;">$5.68</td>
+<td style="text-align: left;">Advanced Photonix</td>
 <td style="text-align: left;">PDV-P8001</td>
 <td style="text-align: left;"><a href="https://www.mouser.com/ProductDetail/846-PDV-P8001">Mouser</a></td>
+<td style="text-align: left;"><a href="https://faculty-web.msoe.edu/prust/EE2920/EE2920Resources/PDV-P8001.pdf">PDF</a></td>
 <td style="text-align: left;">R18</td>
 </tr>
 <tr>
 <td style="text-align: left;">9 V 1 A regulated wall adapter, 5.5/2.1 mm plug</td>
 <td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">$8.95</td>
 <td style="text-align: left;">$8.95</td>
 <td style="text-align: left;">Adafruit</td>
-<td style="text-align: left;">#63</td>
+<td style="text-align: left;">63</td>
 <td style="text-align: left;"><a href="https://www.adafruit.com/product/63">Adafruit</a></td>
+<td style="text-align: left;">—</td>
 <td style="text-align: left;">(plugs into J2)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Microcontroller board, PIC18F57Q43 Curiosity Nano</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Microchip</td>
+<td style="text-align: left;">DM164150</td>
+<td style="text-align: left;">Course kit</td>
+<td style="text-align: left;"><a href="https://www.microchip.com/en-us/development-tool/DM164150">Product page</a></td>
+<td style="text-align: left;">U1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Quad op-amp, rail-to-rail, DIP-14</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Microchip</td>
+<td style="text-align: left;">MCP6004-I/P</td>
+<td style="text-align: left;">Peralta 109 stock</td>
+<td style="text-align: left;"><a href="https://www.microchip.com/en-us/product/MCP6004">Product page</a></td>
+<td style="text-align: left;">U2</td>
 </tr>
 <tr>
 <td style="text-align: left;">DC barrel jack, 5.5/2.1 mm</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
 <td style="text-align: left;">Same Sky</td>
 <td style="text-align: left;">PJ-102AH</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">J2</td>
 </tr>
 <tr>
 <td style="text-align: left;">Fuse, 500 mA 250 V slow-blow, TR5 + socket</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
 <td style="text-align: left;">Littelfuse</td>
 <td style="text-align: left;">TR5 series</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">F1</td>
 </tr>
 <tr>
 <td style="text-align: left;">Schottky diode, 40 V 1 A, DO-41</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">1N5819</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">D1</td>
 </tr>
 <tr>
 <td style="text-align: left;">LED, green (power good), 0805</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">D2</td>
 </tr>
 <tr>
 <td style="text-align: left;">LED, yellow (heartbeat), 0805</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">D3</td>
 </tr>
 <tr>
 <td style="text-align: left;">LED, red (lid status), 0805</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">D4</td>
 </tr>
 <tr>
 <td style="text-align: left;">Capacitor 0.1 µF 16 V, 0805</td>
 <td style="text-align: left;">8</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">C2, C4, C5, C6, C8, C9, C10, C11</td>
 </tr>
 <tr>
 <td style="text-align: left;">Capacitor 0.33 µF 25 V, 0805</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">C1</td>
 </tr>
 <tr>
 <td style="text-align: left;">Capacitor 1 µF 16 V, 0805</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">C7</td>
 </tr>
 <tr>
 <td style="text-align: left;">Electrolytic capacitor 10 µF 25 V, radial 5 mm</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">C3</td>
 </tr>
 <tr>
 <td style="text-align: left;">Resistor 10 kΩ 1/8 W, 0805</td>
 <td style="text-align: left;">10</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">R2, R4, R6, R9, R11, R13, R14, R15, R16, R17</td>
 </tr>
 <tr>
 <td style="text-align: left;">Resistor 3.9 kΩ 1/8 W, 0805 (LDR divider)</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">R19</td>
 </tr>
 <tr>
 <td style="text-align: left;">Resistor 3.3 kΩ 1/8 W, 0805 (gain)</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">R3</td>
 </tr>
 <tr>
 <td style="text-align: left;">Resistor 120 kΩ 1/8 W, 0805 (VREF)</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">R8</td>
 </tr>
 <tr>
 <td style="text-align: left;">Resistor 51 kΩ 1/8 W, 0805 (threshold)</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">R10</td>
 </tr>
 <tr>
 <td style="text-align: left;">Resistor 470 kΩ 1/8 W, 0805 (hysteresis)</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">R12</td>
 </tr>
 <tr>
 <td style="text-align: left;">Resistor 1 kΩ 1/8 W, 0805</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">R1</td>
 </tr>
 <tr>
 <td style="text-align: left;">Resistor 330 Ω 1/8 W, 0805</td>
 <td style="text-align: left;">2</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">R5, R7</td>
 </tr>
 <tr>
 <td style="text-align: left;">Tactile push button, 6 mm THT</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">SW1</td>
 </tr>
 <tr>
 <td style="text-align: left;">IDC header 2×4, 2.54 mm (ribbon to hub)</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">J1</td>
 </tr>
 <tr>
 <td style="text-align: left;">Pin header 1×4, 2.54 mm</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">J3</td>
 </tr>
 <tr>
 <td style="text-align: left;">Pin header 1×3, 2.54 mm (remote LDR)</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">J4</td>
 </tr>
 <tr>
 <td style="text-align: left;">Pin header 1×8, 2.54 mm (expansion)</td>
 <td style="text-align: left;">3</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">J5, J6, J7</td>
 </tr>
 <tr>
 <td style="text-align: left;">Pin header 1×2 + jumper shunt</td>
 <td style="text-align: left;">3</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">JP1, JP2, JP3</td>
 </tr>
 <tr>
 <td style="text-align: left;">Test point, THT pad 2.0 mm</td>
 <td style="text-align: left;">9</td>
-<td style="text-align: left;">Lab stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">TP1–TP9</td>
 </tr>
+<tr>
+<td style="text-align: left;">IC socket, DIP-8 (for U5 on the PCB)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">U5 socket</td>
+</tr>
+<tr>
+<td style="text-align: left;">IC socket, DIP-14 (for U2 on the PCB)</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Peralta 109 stock</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">U2 socket</td>
+</tr>
 </tbody>
 </table>
-<p><strong>Purchased parts total:</strong> $11.50 (L7805CV + LM393P + photoresistor + wall adapter; the course kit and lab-stock parts are not included).</p>
+<p><strong>Total to order:</strong> $19.99 before tax and shipping (Mouser $11.04, Adafruit $8.95).</p>
+<p>Download the spreadsheet version: <a href="../BoardB_BOM.xlsx">BoardB_BOM.xlsx</a></p>
+<h2 id="order-quantities">Order quantities</h2>
+<p>Following the course ordering rules, each ordered part covers <strong>one breadboard prototype, one subsystem PCB, and one or two spares</strong> in case a part gets damaged:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Part</th>
+<th style="text-align: left;">Breadboard</th>
+<th style="text-align: left;">PCB</th>
+<th style="text-align: left;">Spares</th>
+<th style="text-align: left;">Ordered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">L7805CV regulator</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">LM393P comparator</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">PDV-P8001 photoresistor</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Adafruit #63 9 V adapter</td>
+<td style="text-align: left;">shared</td>
+<td style="text-align: left;">shared</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<p>All three ICs are through-hole (TO-220 / DIP-8 / 5 mm), so the same part goes on the breadboard and on the PCB, and nothing ordered is smaller than 0805. The wall adapter just plugs into J2, so one adapter covers both builds. No breakout modules, tools or general lab supplies are being requested.</p>
+<h2 id="hardware-orders">Hardware orders</h2>
+<p>One purchase request per vendor was made from the class order form template and emailed to Zane Reynolds as .xlsx files for approval:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Vendor</th>
+<th style="text-align: left;">Items</th>
+<th style="text-align: left;">Subtotal</th>
+<th style="text-align: left;">Stock when checked (Oct 29)</th>
+<th style="text-align: left;">Purchase request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Mouser</td>
+<td style="text-align: left;">3× 511-L7805CV, 4× 595-LM393P, 4× 846-PDV-P8001</td>
+<td style="text-align: left;">$11.04</td>
+<td style="text-align: left;">576 / 26,940 / 304 in stock</td>
+<td style="text-align: left;"><a href="../AryaPadiyar_Team102_PurchaseRequest_Mouser.pdf">PDF</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Adafruit</td>
+<td style="text-align: left;">1× #63 9 VDC 1 A power adapter</td>
+<td style="text-align: left;">$8.95</td>
+<td style="text-align: left;">84 in stock</td>
+<td style="text-align: left;"><a href="../AryaPadiyar_Team102_PurchaseRequest_Adafruit.pdf">PDF</a></td>
+</tr>
+</tbody>
+</table>
+<p>The adapter is ordered straight from Adafruit because Mouser only had one unit in stock. Everything was in stock and ships immediately, so nothing on the order is back-ordered or obsolete.</p>
+<h2 id="debugging-and-expandability-hardware">Debugging and expandability hardware</h2>
+<p>These parts are on the board only to make it easier to test, debug and extend:</p>
+<ul>
+<li><strong>Test points TP1–TP9</strong> on every supply rail and each analog stage (divider, amplifier, filter, comparator).</li>
+<li><strong>Jumpers JP1–JP3</strong> to isolate the 5 V feed into the Nano, the photoresistor, and the comparator output.</li>
+<li><strong>Headers:</strong> J3 (spare 9 V / 5 V / 3.3 V / GND), J4 (lets the photoresistor sit next to the cap on wires), J5–J7 (unused PIC pins for expansion). 1×40 header strips from Peralta will be snapped to length.</li>
+<li><strong>IC sockets</strong> for U2 and U5 so the op-amp and comparator can be swapped without desoldering.</li>
+<li><strong>Fuse F1 and diode D1</strong> protect the board from shorts and a reversed adapter.</li>
+<li><strong>Heartbeat LED D3 and debug button SW1</strong> to confirm the firmware is running.</li>
+</ul>
 
 
 
