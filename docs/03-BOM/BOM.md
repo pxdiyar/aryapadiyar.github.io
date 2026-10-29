@@ -53,7 +53,11 @@ The table is sorted by where each part comes from. Only four parts have to be bo
 | IC socket, DIP-8 (for U5 on the PCB) | 1 | — | — | — | — | — | Peralta 109 stock | — | U5 socket |
 | IC socket, DIP-14 (for U2 on the PCB) | 1 | — | — | — | — | — | Peralta 109 stock | — | U2 socket |
 
-**Total to order:** $19.99 before tax and shipping (Mouser $11.04, Adafruit $8.95).
+**Total to order (before tax and shipping):**
+
+- Mouser: $11.04
+- Adafruit: $8.95
+- **Total: $19.99**
 
 Download the spreadsheet version: [BoardB_BOM.xlsx](BoardB_BOM.xlsx)
 
