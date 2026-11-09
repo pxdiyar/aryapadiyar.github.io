@@ -35,6 +35,7 @@ I designed **Board B**, which tells the hub when the pill bottle cap is opened. 
 | [Block Diagram](01-Block-Diagram/Block-Diagram.md) | Board B blocks, power domains, signals and the J1 ribbon pinout |
 | [Component Selection](02-Component-Selection/Component-Selection.md) | Sensor, comparator, regulator and power-source options, pin table and MCC setup |
 | [Bill of Materials](03-BOM/BOM.md) | Every part on the schematic with quantities and part numbers |
-| [Schematic](04-Schematic/schematic.md) | Rev 3 KiCad schematic, design calculations, PDF and project download |
+| [Schematic](04-Schematic/schematic.md) | Rev 4 KiCad schematic, design calculations and PDF |
 | [Power Budget](05-Power-Budget/Power-Budget.md) | Current on each rail, spreadsheet download and conclusions |
+| [PCB Design](06-PCB-Design/PCB-Design.md) | 2-layer PCB layout, design rules, Gerbers and KiCad project |
 | [Appendix](Appendix/index.md) | Photoresistor lab measurements used in the design |

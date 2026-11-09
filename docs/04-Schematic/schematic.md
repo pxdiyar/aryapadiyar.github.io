@@ -2,16 +2,18 @@
 title: Schematics
 ---
 
-**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 3**
+**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4**
 
 ## Overview
 
 ![Board B subsystem schematic](BoardB_LidSensor_Schematic.png)
-**Figure 1:** Board B (Cap / Lid Sensing) subsystem schematic, Rev 3.
+**Figure 1:** Board B (Cap / Lid Sensing) subsystem schematic, Rev 4.
 
 Board B detects when the pill bottle cap is opened. A photoresistor sits under the cap: with the cap closed it is dark, and when the cap opens light reaches it, its resistance drops and the divider voltage rises. The signal is amplified, filtered and read by the PIC's ADC, and an LM393 comparator also gives a clean open/closed signal. The board reports to the hub over the team's 8-pin ribbon cable.
 
 > **Rev 3 (Oct 27):** the DRV5055 Hall-effect sensor and cap magnet were replaced by a photoresistor (R18) and a 3.9 kΩ divider resistor (R19), as recommended by the teaching team. The gain, reference and comparator-threshold resistors were re-calculated for the new signal range. Everything else is unchanged from Rev 2.
+
+> **Rev 4 (Nov 9):** updated for the PCB layout. Every part now uses a footprint from my `AP_Footprints` library, including a new custom footprint for the Curiosity Nano (`AP_PIC18F57Q43_Curiosity_Nano_2x28_W15.24mm`: two 1x28 headers, rows 0.6 in apart). The circuit and part values are unchanged from Rev 3.
 
 ---
 
@@ -97,4 +99,4 @@ Rev 2 passed ERC in KiCad 10 with 0 errors and 0 warnings. Rev 3 only changes th
 
 ## Resources
 
-The schematic as a PDF download is available [*here*](BoardB_LidSensor_Schematic.pdf), and the Zip folder of the KiCad 10 project (including the custom `AP_Symbols` symbol library and `AP_Footprints` footprint library) [*here*](AryaPadiyar_BoardB_Schematic_Project.zip).
+The Rev 4 schematic as a PDF download is available [*here*](BoardB_LidSensor_Schematic.pdf). The KiCad project files (schematic, PCB and the custom `AP_Symbols` and `AP_Footprints` libraries) are on the [PCB Design](../06-PCB-Design/PCB-Design.md) page.
