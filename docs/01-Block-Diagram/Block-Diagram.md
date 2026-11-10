@@ -8,7 +8,7 @@ tags:
 ## Overview
 
 **Arya Padiyar — Team 102: Automatic Pill Dispenser**
-**Subsystem: Board B — Cap / Lid Sensing (Rev 3)**
+**Subsystem: Board B — Cap / Lid Sensing (Rev 3, unchanged in Rev 4)**
 
 This block diagram shows how my subsystem, Board B, is laid out and how it connects to the team's hub board.
 
