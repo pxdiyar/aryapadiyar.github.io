@@ -37,7 +37,7 @@ I grouped the board the same way as the block diagram, so each signal path stays
 | Ground planes | GND pour on top and bottom copper | Shielding and a low-impedance return path |
 | Initials | "AP", 6 mm bold, on top copper | Assignment requirement |
 
-The design passes KiCad's Design Rules Check with **0 violations and 0 unconnected items**.
+In KiCad 10 the design passes the Design Rules Check with **0 violations, 0 unconnected items and 0 schematic parity errors**, and the schematic passes the Electrical Rules Check with 0 errors and 0 warnings.
 
 ## Footprints
 
