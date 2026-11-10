@@ -992,7 +992,7 @@
 
 <h2 id="overview">Overview</h2>
 <p><strong>Arya Padiyar — Team 102: Automatic Pill Dispenser</strong>
-<strong>Subsystem: Board B — Cap / Lid Sensing (Rev 3)</strong></p>
+<strong>Subsystem: Board B — Cap / Lid Sensing (Rev 3, unchanged in Rev 4)</strong></p>
 <p>This block diagram shows how my subsystem, Board B, is laid out and how it connects to the team's hub board.</p>
 <ul>
 <li><strong>Power levels:</strong> A 9V wall adapter enters through a DC barrel jack, then a 500 mA fuse and a 1N5819 reverse-polarity diode. An L7805CV linear regulator steps it down to 5V, which feeds the PIC18F57Q43 Curiosity Nano's VBUS through jumper JP1. The Nano's on-board LDO supplies 3.3V (VTG) to the sensor, op-amp, comparator and all logic, so no signal can go above the PIC's 3.3V pin limit.</li>
