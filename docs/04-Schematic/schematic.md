@@ -84,7 +84,7 @@ Ribbon pin 6 is spare. Unused Nano pins are broken out to expansion headers J5 (
 - Unused op-amp (U2D) and comparator (U5B) inputs tied off through 10k pull-up/pull-down resistors
 - Every capacitor lists a working voltage (≥25% margin) and every resistor a power rating (1/8 W, ≥50% margin)
 
-Rev 2 passed ERC in KiCad 10 with 0 errors and 0 warnings. Rev 3 only changes the sensor parts and resistor values; its netlist was compared with Rev 2 and the only differences are U4 → R18/R19 and the HALL_OUT → LDR_OUT net name.
+Rev 4 passes ERC in KiCad 10 with 0 errors and 0 warnings, and the PCB matches it with 0 schematic-parity errors in DRC. Rev 3 only changed the sensor parts and resistor values (U4 → R18/R19, HALL_OUT → LDR_OUT); Rev 4 only adds footprints, so the circuit is unchanged.
 
 ## How the schematic meets the product requirements
 

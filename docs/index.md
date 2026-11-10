@@ -27,6 +27,8 @@ Missed doses and accidental double doses are a common problem for people managin
 I designed **Board B**, which tells the hub when the pill bottle cap is opened. A photoresistor under the cap is dark while the cap is closed; when the cap opens, light reaches it and the divider voltage rises. An MCP6004 op-amp chain amplifies and filters that signal for the PIC's ADC, and an LM393 comparator gives a clean open/closed signal. Board B reports LID_OPEN, LID_FAULT and a heartbeat to the hub, receives DOSE_READY, and also has a UART link. It runs from a 9 V wall adapter through an L7805CV regulator.
 
 > **Rev 3 (October 27, 2026):** on the teaching team's recommendation, the original Hall-effect sensor and cap magnet were replaced by a photoresistor. Every page below has been updated to match.
+>
+> **Rev 4 (November 9, 2026):** every part now has a footprint from my `AP_Footprints` library, and the board is laid out as a 2-layer PCB. See the [PCB Design](06-PCB-Design/PCB-Design.md) page.
 
 ## Datasheet Pages
 

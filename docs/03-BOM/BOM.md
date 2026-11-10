@@ -5,17 +5,17 @@ tags:
 - Board B
 ---
 
-**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 3**
+**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4**
 
 ## Overview
 
-This is the bill of materials for Board B, generated from the Rev 3 [schematic](../04-Schematic/schematic.md) (KiCad *Generate BOM*, grouped by value) and checked against the [block diagram](../01-Block-Diagram/Block-Diagram.md) and [component selection](../02-Component-Selection/Component-Selection.md). Reference designators match the schematic. Every part on the board is listed, including the ones I'm taking from Peralta 109 stock or the course kit.
+This is the bill of materials for Board B, generated from the Rev 4 [schematic](../04-Schematic/schematic.md) (KiCad *Generate BOM*, grouped by value) and checked against the [block diagram](../01-Block-Diagram/Block-Diagram.md) and [component selection](../02-Component-Selection/Component-Selection.md). Reference designators match the schematic. Every part on the board is listed, including the ones I'm taking from Peralta 109 stock or the course kit.
 
 The table is sorted by where each part comes from. Only four parts have to be bought; everything else (passives, LEDs, headers, jumpers, test points, IC sockets, the barrel jack, fuse and 1N5819) is in Peralta 109 general stock, and the Curiosity Nano is from the course kit.
 
 ## Bill of Materials
 
-*Table 1: Board B bill of materials (Rev 3). Prices are Mouser / Adafruit single-quantity prices checked on October 29, 2026.*
+*Table 1: Board B bill of materials (Rev 4: same parts as Rev 3, plus the Curiosity Nano socket headers needed by the PCB). Prices are Mouser / Adafruit single-quantity prices checked on October 29, 2026.*
 
 | **Part / Description** | **Qty on Board** | **Qty to Order** | **Unit Cost** | **Total Cost** | **Manufacturer** | **Manufacturer #** | **Source / Vendor Link** | **Datasheet** | **Schematic Reference Designators** |
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
@@ -52,6 +52,7 @@ The table is sorted by where each part comes from. Only four parts have to be bo
 | Test point, THT pad 2.0 mm | 9 | — | — | — | — | — | Peralta 109 stock | — | TP1–TP9 |
 | IC socket, DIP-8 (for U5 on the PCB) | 1 | — | — | — | — | — | Peralta 109 stock | — | U5 socket |
 | IC socket, DIP-14 (for U2 on the PCB) | 1 | — | — | — | — | — | Peralta 109 stock | — | U2 socket |
+| Female header 1×28, 2.54 mm (socket for the Curiosity Nano on the PCB) | 2 | — | — | — | — | — | Peralta 109 stock | — | U1 socket |
 
 **Total to order (before tax and shipping):**
 

@@ -26,3 +26,4 @@ These are the photoresistor readings from the Resistive Sensor Lab. Board B's di
 | 1 | Oct 5, 2026 | First block diagram (Hall-effect sensor + magnet) |
 | 2 | Oct 19, 2026 | Schematic matched to the team block diagram; UART added on J1 pins 4 and 7 |
 | 3 | Oct 27, 2026 | Hall-effect sensor replaced by a photoresistor (teaching-team recommendation); gain, VREF and threshold resistors recalculated; power budget completed |
+| 4 | Nov 9, 2026 | Footprints assigned from `AP_Footprints` (new custom Curiosity Nano footprint); 2-layer PCB laid out; ERC and DRC clean in KiCad 10; submitted to Peralta Lab (request #4295) |

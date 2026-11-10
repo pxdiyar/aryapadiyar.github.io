@@ -2,7 +2,7 @@
 title: Power Budget
 ---
 
-**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 3**
+**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4** (power design unchanged since Rev 3)
 
 ## Overview
 
