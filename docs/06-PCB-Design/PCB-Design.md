@@ -2,14 +2,14 @@
 title: PCB Design
 ---
 
-**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4**
+**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4 PCB, Rev 4A as built**
 
 ## Overview
 
-This page shows the printed circuit board for Board B, laid out in KiCad from the [Rev 4 schematic](../04-Schematic/schematic.md). It is a 98 mm x 98 mm two-layer board, designed to be milled on the LPKF ProtoMat S63 in Peralta Lab.
+This page shows the printed circuit board for Board B, laid out in KiCad from the [Rev 4 schematic](../04-Schematic/schematic.md). It is a 98 mm x 98 mm two-layer board. The images and PDF below show the board exactly as it was manufactured; the as-built rework is listed under [As built](#as-built).
 
 ![Board B PCB, top copper](BoardB_LidSensor_PCB_Top.png)
-**Figure 1:** Top layer (F.Cu). Reference labels are shown for readability only; the milled board has no silkscreen.
+**Figure 1:** Top layer (F.Cu), as manufactured.
 
 ![Board B PCB, bottom copper](BoardB_LidSensor_PCB_Bottom.png)
 **Figure 2:** Bottom layer (B.Cu), viewed from the top.
@@ -27,7 +27,7 @@ I grouped the board the same way as the block diagram, so each signal path stays
 
 | Rule | Value | Why |
 |---|---|---|
-| Copper layers | 2 (top and bottom), no soldermask or silkscreen | Peralta mill process |
+| Copper layers | 2 (top and bottom) | |
 | Board size | 98.1 mm x 98.1 mm | Under the 100 mm x 100 mm limit (measured in KiCad) |
 | Minimum track / clearance | 0.381 mm (15 mil) | Peralta PCB Mill Specs |
 | Signal tracks | 0.5 mm | |
@@ -43,8 +43,26 @@ In KiCad 10 the design passes the Design Rules Check with **0 violations, 0 unco
 
 Every footprint is in my custom `AP_Footprints` library and has my initials in its name. I made a new footprint for the Curiosity Nano, `AP_PIC18F57Q43_Curiosity_Nano_2x28_W15.24mm`: two 1x28 rows at 2.54 mm pitch, 0.6 in (15.24 mm) apart, with pin 1 and pin 56 at the USB end. The Nano plugs into two 1x28 female headers, so it can be removed for programming or replacement.
 
+## As built
+
+![Assembled Board B PCB](BoardB_Assembled.jpg)
+**Figure 3:** The assembled Board B PCB, with my initials ("AP") in copper and "BOARD B TEAM 102 REV 4" on the silkscreen, powered from USB and running the verification firmware. Yellow is the heartbeat LED (D3), red is the lid LED (D4), and green is the 5 V power-good LED (D2).
+
+The copper layout did not change after manufacturing. These parts were substituted or reworked during assembly, and the [schematic](../04-Schematic/schematic.md) (Rev 4A) and the KiCad project below were updated to match:
+
+| Ref | Designed | As built |
+|---|---|---|
+| R19 | 3.9 kΩ | 4.3 kΩ |
+| R10 | 51 kΩ | Two 100 kΩ in parallel (50 kΩ) |
+| C1 | 0.33 µF | 1 µF |
+| D1 | 1N5819 | Wire jumper across the D1 holes |
+| F1 | TR5 fuse in socket | 5×20 mm fuse holder wired to the F1 pads (the holder does not fit the TR5 footprint) |
+| C4 | 0.1 µF on its pads | 0.1 µF across U2 pin 4 and pin 11 (C4's left pad lifted during assembly) |
+
+Lessons for the full team PCB: use a 5×20 fuse-holder footprint (or order TR5 fuses), and use through-hole footprints for the resistors, capacitors and LEDs to match the parts actually stocked in Peralta.
+
 ## Resources
 
 - PDF of the top and bottom PCB layers: [*here*](BoardB_LidSensor_PCB_Layers.pdf)
-- Zip of the KiCad project (schematic, PCB, `AP_Symbols` and `AP_Footprints` libraries): [*here*](AryaPadiyar_BoardB_PCB_Project.zip)
+- Zip of the KiCad project, updated to Rev 4A as built (schematic, PCB, `AP_Symbols` and `AP_Footprints` libraries): [*here*](AryaPadiyar_BoardB_PCB_Project.zip)
 - Zip of the Gerber and drill files sent to Peralta: [*here*](AryaPadiyar102.zip)
