@@ -1074,14 +1074,64 @@
 
   <h1>Schematics</h1>
 
-<p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4</strong></p>
+<p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4A (as built)</strong></p>
 <h2 id="overview">Overview</h2>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../BoardB_LidSensor_Schematic.png" data-desc-position="bottom"><img alt="Board B subsystem schematic" src="../BoardB_LidSensor_Schematic.png"></a>
-<strong>Figure 1:</strong> Board B (Cap / Lid Sensing) subsystem schematic, Rev 4.</p>
+<strong>Figure 1:</strong> Board B (Cap / Lid Sensing) subsystem schematic, Rev 4A. It matches the assembled Rev 4 PCB, and the as-built changes are listed in the notes at the bottom left of the sheet.</p>
 <p>Board B detects when the pill bottle cap is opened. A photoresistor sits under the cap: with the cap closed it is dark, and when the cap opens light reaches it, its resistance drops and the divider voltage rises. The signal is amplified, filtered and read by the PIC's ADC, and an LM393 comparator also gives a clean open/closed signal. The board reports to the hub over the team's 8-pin ribbon cable.</p>
 <blockquote>
 <p><strong>Rev 3 (Oct 27):</strong> the DRV5055 Hall-effect sensor and cap magnet were replaced by a photoresistor (R18) and a 3.9 kΩ divider resistor (R19), as recommended by the teaching team. The gain, reference and comparator-threshold resistors were re-calculated for the new signal range. Everything else is unchanged from Rev 2.</p>
 <p><strong>Rev 4 (Nov 9):</strong> updated for the PCB layout. Every part now uses a footprint from my <code>AP_Footprints</code> library, including a new custom footprint for the Curiosity Nano (<code>AP_PIC18F57Q43_Curiosity_Nano_2x28_W15.24mm</code>: two 1x28 headers, rows 0.6 in apart). The circuit and part values are unchanged from Rev 3.</p>
+<p><strong>Rev 4A (Nov 25), as built:</strong> while assembling and testing the Rev 4 PCB for Subsystem Hardware Verification, a few parts were substituted or reworked. The schematic values now match the board on my bench:</p>
+<table>
+<thead>
+<tr>
+<th>Ref</th>
+<th>Designed</th>
+<th>As built</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R19</td>
+<td>3.9 kΩ</td>
+<td>4.3 kΩ (lab stock)</td>
+<td>Still close to the 4.1 kΩ optimum; divider levels change by under 5 %</td>
+</tr>
+<tr>
+<td>R10</td>
+<td>51 kΩ</td>
+<td>Two 100 kΩ in parallel (50 kΩ)</td>
+<td>Comparator threshold 0.55 V instead of 0.54 V</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>0.33 µF</td>
+<td>1 µF</td>
+<td>Larger regulator input capacitor; no 0.33 µF in stock</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>1N5819</td>
+<td>Wire jumper</td>
+<td>No 1N5819 available; reverse-polarity protection removed (the adapter plug is keyed)</td>
+</tr>
+<tr>
+<td>F1</td>
+<td>TR5 fuse in socket</td>
+<td>500 mA 5×20 mm fuse in a holder wired to the F1 pads</td>
+<td>The 5×20 holder does not fit the TR5 footprint</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>0.1 µF on its pads</td>
+<td>0.1 µF across U2 pin 4 (VDD) and pin 11 (VSS)</td>
+<td>C4's left pad lifted during assembly; same connection, moved to the op-amp socket pins</td>
+</tr>
+</tbody>
+</table>
+<p>Resistors, capacitors and LEDs are through-hole parts with their leads formed onto the 0805 pads. The connections are unchanged from Rev 4, so the PCB layout itself did not change.</p>
 </blockquote>
 <hr>
 <h2 id="power">Power</h2>
@@ -1101,18 +1151,18 @@
 </tr>
 <tr>
 <td>Fuse</td>
-<td>500 mA slow-blow, TR5 socket (F1)</td>
-<td>Removable</td>
+<td>500 mA fuse (F1)</td>
+<td>As built: 5×20 mm fuse in a holder wired to the F1 pads</td>
 </tr>
 <tr>
 <td>Reverse protection</td>
 <td>1N5819 Schottky (D1)</td>
-<td></td>
+<td>As built: replaced by a wire jumper</td>
 </tr>
 <tr>
 <td>Regulator</td>
 <td>STMicroelectronics L7805CV, TO-220 (U3)</td>
-<td>0.33 µF in, 0.1 µF + 10 µF out, per datasheet</td>
+<td>0.33 µF in (1 µF as built), 0.1 µF + 10 µF out, per datasheet</td>
 </tr>
 <tr>
 <td>5 V → Nano</td>
@@ -1139,8 +1189,8 @@
 <tbody>
 <tr>
 <td>Sensor</td>
-<td>CdS photoresistor R18 (custom symbol <code>LDR_AP</code>, footprint <code>AP_R_LDR_5.0x4.1mm_P3mm</code>) + R19 = 3.9 kΩ to GND</td>
-<td>V = 3.3 × R19 / (R18 + R19): 0.26 V cap closed (46.3 kΩ dark), 0.86 V low light (11.07 kΩ), 2.37 V room light (1.54 kΩ)</td>
+<td>CdS photoresistor R18 (custom symbol <code>LDR_AP</code>, footprint <code>AP_R_LDR_5.0x4.1mm_P3mm</code>) + R19 to GND (3.9 kΩ designed, 4.3 kΩ as built)</td>
+<td>V = 3.3 × R19 / (R18 + R19): 0.26 V cap closed (46.3 kΩ dark), 0.86 V low light (11.07 kΩ), 2.37 V room light (1.54 kΩ). With 4.3 kΩ: 0.28 V, 0.92 V and 2.43 V</td>
 </tr>
 <tr>
 <td>R19 choice</td>
@@ -1190,7 +1240,7 @@
 </tr>
 <tr>
 <td>Input</td>
-<td>Raw divider output (LDR_OUT) vs. a 0.54 V threshold (R10 51k / R11 10k), inside the LM393's 0–1.8 V input range on 3.3 V</td>
+<td>Raw divider output (LDR_OUT) vs. a 0.54 V threshold (R10 51k / R11 10k), inside the LM393's 0–1.8 V input range on 3.3 V. As built, R10 is two 100k in parallel (50k), giving 0.55 V</td>
 </tr>
 <tr>
 <td>Hysteresis</td>
@@ -1366,7 +1416,7 @@
 </tbody>
 </table>
 <h2 id="resources">Resources</h2>
-<p>The Rev 4 schematic as a PDF download is available <a href="../BoardB_LidSensor_Schematic.pdf"><em>here</em></a>. The KiCad project files (schematic, PCB and the custom <code>AP_Symbols</code> and <code>AP_Footprints</code> libraries) are on the <a href="../../06-PCB-Design/PCB-Design/">PCB Design</a> page.</p>
+<p>The Rev 4A (as built) schematic as a PDF download is available <a href="../BoardB_LidSensor_Schematic.pdf"><em>here</em></a>. The KiCad project files (schematic, PCB and the custom <code>AP_Symbols</code> and <code>AP_Footprints</code> libraries) are on the <a href="../../06-PCB-Design/PCB-Design/">PCB Design</a> page.</p>
 
 
 
