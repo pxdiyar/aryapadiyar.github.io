@@ -2,18 +2,31 @@
 title: Schematics
 ---
 
-**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4**
+**Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4A (as built)**
 
 ## Overview
 
 ![Board B subsystem schematic](BoardB_LidSensor_Schematic.png)
-**Figure 1:** Board B (Cap / Lid Sensing) subsystem schematic, Rev 4.
+**Figure 1:** Board B (Cap / Lid Sensing) subsystem schematic, Rev 4A. It matches the assembled Rev 4 PCB, and the as-built changes are listed in the notes at the bottom left of the sheet.
 
 Board B detects when the pill bottle cap is opened. A photoresistor sits under the cap: with the cap closed it is dark, and when the cap opens light reaches it, its resistance drops and the divider voltage rises. The signal is amplified, filtered and read by the PIC's ADC, and an LM393 comparator also gives a clean open/closed signal. The board reports to the hub over the team's 8-pin ribbon cable.
 
 > **Rev 3 (Oct 27):** the DRV5055 Hall-effect sensor and cap magnet were replaced by a photoresistor (R18) and a 3.9 kΩ divider resistor (R19), as recommended by the teaching team. The gain, reference and comparator-threshold resistors were re-calculated for the new signal range. Everything else is unchanged from Rev 2.
 
 > **Rev 4 (Nov 9):** updated for the PCB layout. Every part now uses a footprint from my `AP_Footprints` library, including a new custom footprint for the Curiosity Nano (`AP_PIC18F57Q43_Curiosity_Nano_2x28_W15.24mm`: two 1x28 headers, rows 0.6 in apart). The circuit and part values are unchanged from Rev 3.
+
+> **Rev 4A (Nov 25), as built:** while assembling and testing the Rev 4 PCB for Subsystem Hardware Verification, a few parts were substituted or reworked. The schematic values now match the board on my bench:
+>
+> | Ref | Designed | As built | Effect |
+> |---|---|---|---|
+> | R19 | 3.9 kΩ | 4.3 kΩ (lab stock) | Still close to the 4.1 kΩ optimum; divider levels change by under 5 % |
+> | R10 | 51 kΩ | Two 100 kΩ in parallel (50 kΩ) | Comparator threshold 0.55 V instead of 0.54 V |
+> | C1 | 0.33 µF | 1 µF | Larger regulator input capacitor; no 0.33 µF in stock |
+> | D1 | 1N5819 | Wire jumper | No 1N5819 available; reverse-polarity protection removed (the adapter plug is keyed) |
+> | F1 | TR5 fuse in socket | 500 mA 5×20 mm fuse in a holder wired to the F1 pads | The 5×20 holder does not fit the TR5 footprint |
+> | C4 | 0.1 µF on its pads | 0.1 µF across U2 pin 4 (VDD) and pin 11 (VSS) | C4's left pad lifted during assembly; same connection, moved to the op-amp socket pins |
+>
+> Resistors, capacitors and LEDs are through-hole parts with their leads formed onto the 0805 pads. The connections are unchanged from Rev 4, so the PCB layout itself did not change.
 
 ---
 
@@ -22,9 +35,9 @@ Board B detects when the pill bottle cap is opened. A photoresistor sits under t
 | Item | Part | Notes |
 |---|---|---|
 | Input | Same Sky PJ-102AH barrel jack (J2) | 9 V wall adapter (Adafruit #63); accepts 9–12 V |
-| Fuse | 500 mA slow-blow, TR5 socket (F1) | Removable |
-| Reverse protection | 1N5819 Schottky (D1) | |
-| Regulator | STMicroelectronics L7805CV, TO-220 (U3) | 0.33 µF in, 0.1 µF + 10 µF out, per datasheet |
+| Fuse | 500 mA fuse (F1) | As built: 5×20 mm fuse in a holder wired to the F1 pads |
+| Reverse protection | 1N5819 Schottky (D1) | As built: replaced by a wire jumper |
+| Regulator | STMicroelectronics L7805CV, TO-220 (U3) | 0.33 µF in (1 µF as built), 0.1 µF + 10 µF out, per datasheet |
 | 5 V → Nano | Jumper JP1 to VBUS | Remove JP1 when the Nano's USB cable is plugged in |
 | 3.3 V rail | Curiosity Nano VTG | Powers all analog parts, so no signal can exceed the PIC's pin limits |
 
@@ -34,7 +47,7 @@ Load is under 100 mA, so the L7805 dissipates at most (12 − 5) × 0.1 = 0.7 W 
 
 | Stage | Parts | Design |
 |---|---|---|
-| Sensor | CdS photoresistor R18 (custom symbol `LDR_AP`, footprint `AP_R_LDR_5.0x4.1mm_P3mm`) + R19 = 3.9 kΩ to GND | V = 3.3 × R19 / (R18 + R19): 0.26 V cap closed (46.3 kΩ dark), 0.86 V low light (11.07 kΩ), 2.37 V room light (1.54 kΩ) |
+| Sensor | CdS photoresistor R18 (custom symbol `LDR_AP`, footprint `AP_R_LDR_5.0x4.1mm_P3mm`) + R19 to GND (3.9 kΩ designed, 4.3 kΩ as built) | V = 3.3 × R19 / (R18 + R19): 0.26 V cap closed (46.3 kΩ dark), 0.86 V low light (11.07 kΩ), 2.37 V room light (1.54 kΩ). With 4.3 kΩ: 0.28 V, 0.92 V and 2.43 V |
 | R19 choice | Geometric mean of the lab readings | √(11.07k × 1.54k) ≈ 4.1 kΩ → 3.9 kΩ standard value, maximizes the swing between low and room light |
 | Reference | R8 = 120 kΩ / R9 = 10 kΩ divider, buffered by MCP6004 channel C | VREF = 3.3 × 10k / 130k ≈ 0.25 V, set to the cap-closed level |
 | Gain | MCP6004 channel A, non-inverting about VREF | G = 1 + R3/R2 = 1 + 3.3k/10k ≈ 1.33, so ADC sees ≈ 0.26 V closed, 1.06 V low light, 3.07 V room light |
@@ -49,7 +62,7 @@ The photoresistor can sit on the board or next to the cap through header J4 (pin
 | Item | Value |
 |---|---|
 | Part | TI LM393P (U5) |
-| Input | Raw divider output (LDR_OUT) vs. a 0.54 V threshold (R10 51k / R11 10k), inside the LM393's 0–1.8 V input range on 3.3 V |
+| Input | Raw divider output (LDR_OUT) vs. a 0.54 V threshold (R10 51k / R11 10k), inside the LM393's 0–1.8 V input range on 3.3 V. As built, R10 is two 100k in parallel (50k), giving 0.55 V |
 | Hysteresis | R14 10k / R12 470k ≈ 69 mV |
 | Output | Open collector, 10k pull-up to 3.3 V, to RB0 |
 | Logic | RB0 = 1 when the cap is open |
@@ -99,4 +112,4 @@ Rev 4 passes ERC in KiCad 10 with 0 errors and 0 warnings, and the PCB matches i
 
 ## Resources
 
-The Rev 4 schematic as a PDF download is available [*here*](BoardB_LidSensor_Schematic.pdf). The KiCad project files (schematic, PCB and the custom `AP_Symbols` and `AP_Footprints` libraries) are on the [PCB Design](../06-PCB-Design/PCB-Design.md) page.
+The Rev 4A (as built) schematic as a PDF download is available [*here*](BoardB_LidSensor_Schematic.pdf). The KiCad project files (schematic, PCB and the custom `AP_Symbols` and `AP_Footprints` libraries) are on the [PCB Design](../06-PCB-Design/PCB-Design.md) page.
