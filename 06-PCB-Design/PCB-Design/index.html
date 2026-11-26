@@ -808,6 +808,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#as-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      As built
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resources" class="md-nav__link">
     <span class="md-ellipsis">
       Resources
@@ -987,6 +996,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#as-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      As built
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resources" class="md-nav__link">
     <span class="md-ellipsis">
       Resources
@@ -1020,11 +1038,11 @@
 
   <h1>PCB Design</h1>
 
-<p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4</strong></p>
+<p><strong>Arya Padiyar | Team 102 | Board B: Cap / Lid Sensing | Rev 4 PCB, Rev 4A as built</strong></p>
 <h2 id="overview">Overview</h2>
-<p>This page shows the printed circuit board for Board B, laid out in KiCad from the <a href="../../04-Schematic/schematic/">Rev 4 schematic</a>. It is a 98 mm x 98 mm two-layer board, designed to be milled on the LPKF ProtoMat S63 in Peralta Lab.</p>
+<p>This page shows the printed circuit board for Board B, laid out in KiCad from the <a href="../../04-Schematic/schematic/">Rev 4 schematic</a>. It is a 98 mm x 98 mm two-layer board. The images and PDF below show the board exactly as it was manufactured; the as-built rework is listed under <a href="#as-built">As built</a>.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../BoardB_LidSensor_PCB_Top.png" data-desc-position="bottom"><img alt="Board B PCB, top copper" src="../BoardB_LidSensor_PCB_Top.png"></a>
-<strong>Figure 1:</strong> Top layer (F.Cu). Reference labels are shown for readability only; the milled board has no silkscreen.</p>
+<strong>Figure 1:</strong> Top layer (F.Cu), as manufactured.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../BoardB_LidSensor_PCB_Bottom.png" data-desc-position="bottom"><img alt="Board B PCB, bottom copper" src="../BoardB_LidSensor_PCB_Bottom.png"></a>
 <strong>Figure 2:</strong> Bottom layer (B.Cu), viewed from the top.</p>
 <h2 id="layout">Layout</h2>
@@ -1047,8 +1065,8 @@
 <tbody>
 <tr>
 <td>Copper layers</td>
-<td>2 (top and bottom), no soldermask or silkscreen</td>
-<td>Peralta mill process</td>
+<td>2 (top and bottom)</td>
+<td></td>
 </tr>
 <tr>
 <td>Board size</td>
@@ -1095,10 +1113,56 @@
 <p>In KiCad 10 the design passes the Design Rules Check with <strong>0 violations, 0 unconnected items and 0 schematic parity errors</strong>, and the schematic passes the Electrical Rules Check with 0 errors and 0 warnings.</p>
 <h2 id="footprints">Footprints</h2>
 <p>Every footprint is in my custom <code>AP_Footprints</code> library and has my initials in its name. I made a new footprint for the Curiosity Nano, <code>AP_PIC18F57Q43_Curiosity_Nano_2x28_W15.24mm</code>: two 1x28 rows at 2.54 mm pitch, 0.6 in (15.24 mm) apart, with pin 1 and pin 56 at the USB end. The Nano plugs into two 1x28 female headers, so it can be removed for programming or replacement.</p>
+<h2 id="as-built">As built</h2>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../BoardB_Assembled.jpg" data-desc-position="bottom"><img alt="Assembled Board B PCB" src="../BoardB_Assembled.jpg"></a>
+<strong>Figure 3:</strong> The assembled Board B PCB, with my initials ("AP") in copper and "BOARD B TEAM 102 REV 4" on the silkscreen, powered from USB and running the verification firmware. Yellow is the heartbeat LED (D3), red is the lid LED (D4), and green is the 5 V power-good LED (D2).</p>
+<p>The copper layout did not change after manufacturing. These parts were substituted or reworked during assembly, and the <a href="../../04-Schematic/schematic/">schematic</a> (Rev 4A) and the KiCad project below were updated to match:</p>
+<table>
+<thead>
+<tr>
+<th>Ref</th>
+<th>Designed</th>
+<th>As built</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R19</td>
+<td>3.9 kΩ</td>
+<td>4.3 kΩ</td>
+</tr>
+<tr>
+<td>R10</td>
+<td>51 kΩ</td>
+<td>Two 100 kΩ in parallel (50 kΩ)</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>0.33 µF</td>
+<td>1 µF</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>1N5819</td>
+<td>Wire jumper across the D1 holes</td>
+</tr>
+<tr>
+<td>F1</td>
+<td>TR5 fuse in socket</td>
+<td>5×20 mm fuse holder wired to the F1 pads (the holder does not fit the TR5 footprint)</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>0.1 µF on its pads</td>
+<td>0.1 µF across U2 pin 4 and pin 11 (C4's left pad lifted during assembly)</td>
+</tr>
+</tbody>
+</table>
+<p>Lessons for the full team PCB: use a 5×20 fuse-holder footprint (or order TR5 fuses), and use through-hole footprints for the resistors, capacitors and LEDs to match the parts actually stocked in Peralta.</p>
 <h2 id="resources">Resources</h2>
 <ul>
 <li>PDF of the top and bottom PCB layers: <a href="../BoardB_LidSensor_PCB_Layers.pdf"><em>here</em></a></li>
-<li>Zip of the KiCad project (schematic, PCB, <code>AP_Symbols</code> and <code>AP_Footprints</code> libraries): <a href="../AryaPadiyar_BoardB_PCB_Project.zip"><em>here</em></a></li>
+<li>Zip of the KiCad project, updated to Rev 4A as built (schematic, PCB, <code>AP_Symbols</code> and <code>AP_Footprints</code> libraries): <a href="../AryaPadiyar_BoardB_PCB_Project.zip"><em>here</em></a></li>
 <li>Zip of the Gerber and drill files sent to Peralta: <a href="../AryaPadiyar102.zip"><em>here</em></a></li>
 </ul>
 
